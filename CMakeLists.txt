@@ -3,4 +3,4 @@ project(Tinytcpipstack C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_library(Tinytcpipstack library.c library.h)
+add_library(Tinytcpipstack library.c library.h test.c)
