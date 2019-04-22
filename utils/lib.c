@@ -38,8 +38,8 @@ int str2ip(char *str, unsigned int *ip)
 int parse_ip_port(char *str, unsigned int *addr, unsigned short *nport){
     char *port=NULL;
     int n=0;
-    nport = (unsigned short*)malloc(sizeof(unsigned short));
     if((port=strchr(str,':'))!=NULL){
+        nport = (unsigned short*)malloc(sizeof(unsigned short));
         n = atoi(&port[1]);
         *nport = n;
     }
