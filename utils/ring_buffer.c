@@ -3,6 +3,7 @@
 //
 
 #include <stdlib.h>
+#include <string.h>
 #include "ring_buffer.h"
 #include "lib.h"
 
@@ -36,12 +37,38 @@ void free_rbuf(struct ring_buf* rbuf){
     }
 }
 
-int rbuf_write(struct ring_buf* rbuf,char* data,int size){
-    int len,wlen,onelen;
+int rbuf_write(struct ring_buf* rbuf,char *data,int size){
+    int len,wlen,linearlen;
     if(rbuf==NULL)
         return 0;
     len = wlen = min(RBUFUNUSED(rbuf),size);//获取环形缓冲区中的剩余可写空间，与想要写入的size值比较并取最小值
     while (len>0){
-
+        linearlen = min(RBUFHEADRIGHT(rbuf),len);
+        memcpy(RBUFHEAD(rbuf),data,linearlen);
+        data+=linearlen;
+        len-=linearlen;
+        rbuf->head+=linearlen;
     }
+    return wlen;
+}
+
+int rbuf_read(struct ring_buf *rbuf,char *data,int size){
+    int len,rlen,linearlen;
+    if(rbuf==NULL){
+        return 0;
+    }
+    len = rlen = min(RBUFUSED(rbuf).size);
+    while (len>0){
+        linearlen = min(RBUFTAILRIGHT(rbuf),len);
+        memcpy(data,RBUFTAIL(rbuf),linearlen);
+        data+=linearlen;
+        len-=linearlen;
+        rbuf->tail+=linearlen;
+    }
+    //更新写(head)、读(tail)指针索引
+    if(rbuf->tail>=rbuf->size){
+        rbuf->head-=rbuf->size;
+        rbuf->tail-=rbuf->size;
+    }
+    return rlen;
 }
