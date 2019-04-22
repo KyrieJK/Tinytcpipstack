@@ -49,6 +49,7 @@ struct ring_buf{
 
 extern int alloc_rbufs;
 
+
 extern int free_rbufs;
 
 extern struct ring_buf *alloc_rbuf(int size);
