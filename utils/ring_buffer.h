@@ -47,4 +47,16 @@ struct ring_buf{
         (RBUFUSED(ring_buf)) :\
             ((ring_buf)->size - RBUFTAIL(ring_buf)))
 
+extern int alloc_rbufs;
+
+extern int free_rbufs;
+
+extern struct ring_buf *alloc_rbuf(int size);
+
+extern void free_rbuf(struct ring_buf* rbuf);
+
+extern int rbuf_write(struct ring_buf* rbuf,char *data,int size);
+
+extern int rbuf_read(struct ring_buf *rbuf,char *data,int size);
+
 #endif //TINYTCPIPSTACK_RING_BUFFER_H
