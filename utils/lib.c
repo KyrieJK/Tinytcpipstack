@@ -11,6 +11,45 @@ int min(int x,int y){
     return x > y ? y : x;
 }
 
+int max(int x,int y){
+    return x > y ? x : y;
+}
+
+void perrx(char *str){
+    if(errno){
+        perror(str);
+    } else{
+        fprintf(stderr,"ERROR:%s\n",str);
+    }
+    exit(EXIT_FAILURE);
+}
+
+/**
+ * malloc函数封装
+ * @param size
+ * @return
+ */
+void *xmalloc(int size){
+    void *p=malloc(size);
+    if(!p){
+        perrx("malloc");
+    }
+    return p;
+}
+
+/**
+ * calloc函数封装
+ * @param size
+ * @return
+ */
+void *xcalloc(int size){
+    void *p=calloc(1,size);
+    if(!p){
+        perrx("calloc");
+    }
+    return p;
+}
+
 /**
  * 字符串转换为IP地址
  * @param str
