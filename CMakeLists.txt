@@ -4,5 +4,5 @@ project(Tinytcpipstack C)
 set(CMAKE_C_STANDARD 99)
 
 add_library(Tinytcpipstack library.c library.h)
-add_executable(MAIN1 test.c)
+add_executable(MAIN1 test.c include/netif.h include/list.h)
 add_executable(MAIN2 utils/checksum.c utils/ring_buffer.c utils/ring_buffer.h utils/lib.c utils/lib.h)
