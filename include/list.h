@@ -103,4 +103,97 @@ static inline void list_del_init(struct list_head *del_list){
         &entry->member != (head);\
         entry = list_last_entry(&entry->member,typeof(*entry),member))
 
+/**
+ * 哈希链表
+ * 非循环链表
+ * Hash list区分头节点和数据节点
+ */
+
+//哈希链表头节点
+struct hlist_head{
+    struct hlist_node *first;
+};
+//哈希链表数据节点
+struct hlist_node{
+    struct hlist_node *next;
+    struct hlist_node **pprev;
+};
+
+static inline int hlist_unhashed(struct hlist_node *node){
+    return !node->pprev;
+}
+
+static inline int hlist_empty(struct hlist_head *head){
+    return !head->first;
+}
+
+static inline void hlist_head_init(struct hlist_head *head){
+    head->first = NULL;
+}
+
+static inline void hlist_node_init(struct hlist_node *node){
+    node->next = NULL;
+    node->pprev = NULL;
+}
+
+static inline void __hlist_del(struct hlist_node *n){
+    *(n->pprev) = n->next;//pprev为二级指针hlist_node**，需要解引用后解析为hlist_node*类型
+    if (n->next != NULL) {
+        n->next->pprev = n->pprev;
+    }
+}
+
+static inline void hlist_del(struct hlist_node *n){
+    __hlist_del(n);
+    n->next = NULL;
+    n->pprev = NULL;
+}
+
+/**
+ * 在头节点之后添加数据节点
+ * @param n
+ * @param head
+ */
+static inline void hlist_add_head(struct hlist_node *n, struct hlist_head *head){
+    n->next = head->first;
+    n->pprev = &head->first;
+    if(head->first!=NULL){
+        head->first->pprev = &n->next;
+    }
+    head->first = n;
+}
+
+static inline void hlist_add_before(struct hlist_node *n, struct hlist_node *next){
+    n->next = next;
+    n->pprev = next->pprev;
+    *(next->pprev) = n;
+    next->pprev = &n->next;
+}
+
+/**
+ * 将数据节点n添加至next后
+ * @param n
+ * @param next
+ */
+static inline void hlist_add_after(struct hlist_node *n, struct hlist_node *next){
+    n -> next = next->next;
+    n->pprev = &next->next;
+    if(next->next!=NULL){
+        next->next->pprev = &n->next;
+    }
+    next->next = n;
+}
+
+#define hlist_entry(ptr,type,member) list_entry(ptr,type,member)
+
+#define hlist_for_each_entry(entry,node,head,member)\
+    for(node=head->first;\
+    node && (entry = hlist_entry(node,typeof(*entry),member));\
+    node = node->next)
+
+#define hlist_for_each_entry_ifnull(entry,head,member)\
+    for(entry = (head->first ? hlist_entry(head->first,typeof(*entry),member):NULL);\
+        entry;\
+        entry = (entry->member.next) ? hlist_entry(entry->member.next,typeof(*entry),member) : NULL)
+
 #endif //TINYTCPIPSTACK_LIST_H
