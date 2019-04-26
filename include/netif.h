@@ -5,6 +5,8 @@
 #ifndef TINYTCPIPSTACK_NETIF_H
 #define TINYTCPIPSTACK_NETIF_H
 
+#include "list.h"
+
 #define NETDEV_HWALEN 6
 #define IFNAMESIZE 16
 
@@ -79,6 +81,7 @@ struct pk_buff{
     int pk_len;
     int pk_refcnt;
     struct netdev *pk_indev;
+    struct rt_entry *pk_rtdst;
 };
 
 #endif //TINYTCPIPSTACK_NETIF_H
