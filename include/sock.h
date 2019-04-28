@@ -5,6 +5,9 @@
 #ifndef TINYTCPIPSTACK_SOCK_H
 #define TINYTCPIPSTACK_SOCK_H
 
+#include "netif.h"
+#include "list.h"
+
 struct sock_addr{
     unsigned int src_addr;
     unsigned int dst_addr;
@@ -24,10 +27,29 @@ struct sock{
     struct socket *sock;
     struct sock_ops *ops; /* sock结构体的操作函数集 */
     struct rtentry *sk_dst; /* 路由目的入口(next-hop) */
+    struct list_head recv_queue;
+    unsigned int hash; /* 哈希表，存储元素为sock结构体，便于索引 */
+    struct hlist_node hash_list;
+    int refcnt; /* 引用计数 */
 };
 
+/* sock结构体操作函数集 */
 struct sock_ops{
-
+    int (*hash)(struct sock *);
+    void (*unhash)(struct sock *);
+    int (*bind)(struct sock *, struct sock_addr *);
+    int (*connect)(struct sock *, struct sock_addr *);
+    int (*listen)(struct sock *,int);
+    struct sock *(*accept)(struct sock *);
+    int (*close)(struct sock *);
+    int (*set_port)(struct sock*, unsigned short);
+    struct pk_buff *(*recv_pkb)(struct sock *);
+    int (*recv_buf)(struct sock *,char *,int);
+    int (*send_pkb)(struct sock *, struct pk_buff *);
+    int (*send_buf)(struct sock *,void *,int , struct sock_addr *);
 };
+
+#define hlist_for_each_sock(sk,node,head)\
+    hlist_for_each_entry(sk,node,head,hash_list)
 
 #endif //TINYTCPIPSTACK_SOCK_H

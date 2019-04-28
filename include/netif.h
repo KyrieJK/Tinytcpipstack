@@ -79,9 +79,9 @@ struct pk_buff{
     unsigned short pk_protocol;
     unsigned short pk_type;
     int pk_len;
-    int pk_refcnt;
+    int pk_refcnt; /* 引用计数 */
     struct netdev *pk_indev;
-    struct rt_entry *pk_rtdst;
+    struct rt_entry *pk_rtdst; /* 路由目的入口 */
 };
 
 #endif //TINYTCPIPSTACK_NETIF_H
