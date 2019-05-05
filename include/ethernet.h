@@ -18,8 +18,8 @@
 struct ethernet_hdr{
     unsigned char eth_dst[ETHERNET_ADDR_LEN];
     unsigned char eth_src[ETHERNET_ADDR_LEN];
-    unsigned short type; /* 数据报文类型 */
-    unsigned char eth_data[0];
+    unsigned short protocol; /* 数据报文类型 */
+    unsigned char eth_data[0];/* 变长数组，在内存地址中与结构体ethernet_hdr连续 */
 };
 
 static inline void hwacpy(void *dst,void *src){

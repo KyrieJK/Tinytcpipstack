@@ -1,5 +1,6 @@
 //#include <endian.h>
 #include <stdio.h>
+#include "../include/netif.h"
 
 //
 // Created by KyrieJK on 2019/4/21.
@@ -8,24 +9,7 @@
 #define PROTO_TCP 6
 #define PROTO_UDP 17
 
-#define HOST_LITTLE_ENDIAN
 
-#ifdef HOST_LITTLE_ENDIAN
-
-#define _ntohs(net) _htons(net)
-
-#define _ntohl(net) _htonl(net)
-
-static inline unsigned short _htons(unsigned short host){
-    return (host >> 8) | ((host << 8) & 0xff00);
-}
-
-static inline unsigned int _htonl(unsigned int host){
-    return ((host & 0x000000ff) << 24) | ((host & 0x0000ff00) << 8) | ((host & 0x00ff0000) >> 8) |
-           ((host & 0xff000000) >> 24);
-}
-
-#endif
 static inline unsigned int sum(unsigned short *data, int size, unsigned int cksum){
     //对数据包头部中的每16bit进行二进制求和
     //参数data是指向unsigned short的指针，unsigned short为2字节，即16bit

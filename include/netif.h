@@ -10,6 +10,25 @@
 #define NETDEV_HWALEN 6
 #define IFNAMESIZE 16
 
+#define HOST_LITTLE_ENDIAN
+
+#ifdef HOST_LITTLE_ENDIAN
+
+#define _ntohs(net) _htons(net)
+
+#define _ntohl(net) _htonl(net)
+
+static inline unsigned short _htons(unsigned short host){
+    return (host >> 8) | ((host << 8) & 0xff00);
+}
+
+static inline unsigned int _htonl(unsigned int host){
+    return ((host & 0x000000ff) << 24) | ((host & 0x0000ff00) << 8) | ((host & 0x00ff0000) >> 8) |
+           ((host & 0xff000000) >> 24);
+}
+
+#endif
+
 /**
  * 此结构用来描述网络设备
  * 在本项目中主要是用来描述tap设备
@@ -76,12 +95,29 @@ struct tapdev{
  */
 struct pk_buff{
     struct list_head pk_list;/* 通过list_head双向循环链表结构的next和prev指针将多个pkb连接起来 */
-    unsigned short pk_protocol;
+    unsigned short pk_protocol;/* 数据报文类型 如ETH_P_IP、ETH_P_ARP等 */
     unsigned short pk_type;
     int pk_len;
     int pk_refcnt; /* 引用计数 */
     struct netdev *pk_indev;
     struct rt_entry *pk_rtdst; /* 路由目的入口 */
+    unsigned char pk_data[0];/*变长数组，linux内核源码中用的很多，内存地址空间与所在结构体连续。但是貌似在linux5.0里面，变长数组被移除了？？*/
 };
+
+#define PKT_NONE 0
+#define PKT_LOCALHOST 1
+#define PKT_OTHERHOST 2
+#define PKT_MULTICAST 3
+#define PKT_BROADCAST 4
+
+extern void pkb_amount();
+extern void pkb_trim(struct pk_buff *pkb,int len);
+extern struct pk_buff *alloc_pkb(int size);
+extern struct pk_buff *alloc_netdev_pkb(struct net_device *dev);
+extern struct pk_buff *copy_pkb(struct pk_buff *pkb);
+extern void free_pkb(struct pk_buff *pkb);
+extern struct pk_buff get_pkb(struct pk_buff *pkb);
+
+extern void ethernet_in(struct net_device *dev, struct pk_buff *pkb);
 
 #endif //TINYTCPIPSTACK_NETIF_H

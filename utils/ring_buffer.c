@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ring_buffer.h"
-#include "lib.h"
+#include "../include/lib.h"
 
 //已分配的ring_buf数量
 int alloc_rbufs = 0;

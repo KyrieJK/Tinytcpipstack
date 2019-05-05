@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <netinet/in.h>
-#include "lib.h"
+#include "../include/lib.h"
 
 int min(int x,int y){
     return x > y ? y : x;

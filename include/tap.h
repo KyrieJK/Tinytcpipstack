@@ -29,6 +29,8 @@ extern void gethwaddr_tap(int fd, unsigned char *hwa);
 
 extern void getipaddr_tap(unsigned char *name, unsigned int *ipaddr);
 
+extern void setipaddr_tap(unsigned char *name,unsigned int ipaddr);
+
 extern void setnetmask_tap(unsigned char *name,unsigned int netmask);
 
 extern void delete_tap(int fd);

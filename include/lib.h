@@ -19,7 +19,16 @@
 #include <ctype.h>
 #include <stdarg.h>
 #include <pthread.h>
+#include <unistd.h>
 
-int min(int x,int y);
-int max(int x,int y);
+#include <linux/syscalls.h>
+
+#define gettid() syscall(SYS_gettid)
+#define ferr(fmt,args...) fprintf(stderr,fmt,##args)
+#define dbg(fmt,args...) ferr("[%d]%s " fmt "\n",(int)(gettid()),__FUNCTION__,##args);
+
+extern int min(int x,int y);
+extern int max(int x,int y);
+extern void *xmalloc(int);
+extern void *xcalloc(int);
 #endif //TINYTCPIPSTACK_LIB_H
