@@ -21,7 +21,6 @@
 #include <pthread.h>
 #include <unistd.h>
 
-#include <linux/syscalls.h>
 
 #define gettid() syscall(SYS_gettid)
 #define ferr(fmt,args...) fprintf(stderr,fmt,##args)

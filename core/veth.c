@@ -40,6 +40,10 @@ static int tap_dev_init(){
     list_init(&tap->dev.net_list);
 }
 
+/**
+ * 初始化veth
+ * 将tap设备进一步抽象化为veth设备，并将tap设备参数用于veth设备初始化
+ * **/
 static int veth_dev_init(struct net_device *dev){
     if(tap_dev_init()<0) {
         perror("Cannot init tapdevice");
@@ -110,13 +114,20 @@ static void veth_rx(void){
     }
 }
 
+/**
+ * struct pollfd{
+ *      int fd; 需要被检测或选择的文件描述符
+ *      short events; 对fd上感兴趣的事件
+ *      short revents; 文件描述符fd上当前实际发生的事件，返回的事件
+ * }
+ * **/
 void veth_poll(void){
     struct pollfd pfd = {};
     int ret_val;
     /* 阻塞程序，等待读取事件发生 */
     while (1){
         pfd.fd = tap->fd;
-        pfd.events=POLLIN;
+        pfd.events=POLLIN;/* 有数据可读 */
         pfd.revents = 0;
 
         ret_val = poll(&pfd,1,-1);
@@ -128,6 +139,9 @@ void veth_poll(void){
     }
 }
 
+/**
+ * 初始化veth设备的操作函数集
+ * **/
 static struct netdev_ops veth_ops ={
         .init = veth_dev_init,
         .hard_xmit = veth_xmit,
@@ -135,3 +149,18 @@ static struct netdev_ops veth_ops ={
         .localnet = localnet,
         .exit = veth_dev_exit,
 };
+
+/**
+ * veth设备驱动初始化
+ * **/
+void veth_init(void){
+    veth = netdev_alloc("veth",&veth_ops);
+}
+
+/**
+ * veth exit并free占用的内存空间
+ * **/
+void veth_exit(void){
+    netdev_free(veth);
+}
+

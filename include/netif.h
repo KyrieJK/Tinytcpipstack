@@ -117,6 +117,8 @@ extern struct pk_buff *alloc_netdev_pkb(struct net_device *dev);
 extern struct pk_buff *copy_pkb(struct pk_buff *pkb);
 extern void free_pkb(struct pk_buff *pkb);
 extern struct pk_buff get_pkb(struct pk_buff *pkb);
+extern struct net_device *netdev_alloc(char *dev,struct netdev_ops *);
+extern void netdev_free(struct net_device *dev);
 
 extern void ethernet_in(struct net_device *dev, struct pk_buff *pkb);
 
