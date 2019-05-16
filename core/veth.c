@@ -65,7 +65,7 @@ static void veth_dev_exit(struct net_device *dev){
 }
 
 struct net_device_stats *get_netdev_stats(struct net_device *dev){
-    return dev->netdev_stats;
+    return &dev->netdev_stats;
 }
 
 unsigned int localnet(struct net_device *dev){

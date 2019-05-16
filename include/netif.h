@@ -41,7 +41,7 @@ struct net_device{
     unsigned char net_name[IFNAMESIZE];/* 设备名称 */
     struct list_head net_list;/* 网络设备链表 */
     struct netdev_ops *net_ops;/* 网络设备操作函数集 */
-    struct net_device_stats netdev_stats;/* 网络设备接口统计信息 */
+    struct net_device_stats netdev_stats;/* 网络设备接口数据包统计信息 */
 };
 
 /* 网络设备操作函数集 */
@@ -53,7 +53,7 @@ struct netdev_ops {
     void (*exit)(struct net_device *);/* 网络设备注销 */
 };
 
-/*网络设备接口统计信息*/
+/*网络设备接口数据包统计信息*/
 struct net_device_stats{
     unsigned int rx_packets; /* 接收数据报总数 */
     unsigned int tx_packets; /* 发送数据包总数 */
