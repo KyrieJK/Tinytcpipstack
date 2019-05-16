@@ -1,0 +1,1 @@
+/usr/bin/cc -g  -Wl,--enable-auto-import CMakeFiles/MAIN1.dir/test.c.o CMakeFiles/MAIN1.dir/core/tap.c.o CMakeFiles/MAIN1.dir/core/veth.c.o CMakeFiles/MAIN1.dir/core/pkb.c.o CMakeFiles/MAIN1.dir/core/dllnet.c.o  -o MAIN1.exe -Wl,--out-implib,libMAIN1.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

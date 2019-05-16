@@ -21,6 +21,9 @@ static int tap_dev_init(){
         free(tap);
         return -1;
     }
+//khkjh
+
+
     if (setpersist_tap(tap->fd) < 0) {
         close(tap->fd);
     }
@@ -52,10 +55,19 @@ static int veth_dev_init(struct net_device *dev){
     return 0;
 }
 
-static void veth_dev_exit(struct netdev *dev){
-    if(dev!=veth)
+static void veth_dev_exit(struct net_device *dev){
+    if(dev!=veth){
         perror("Net Device Error");
+    }
     delete_tap(tap->fd);
+}
+
+struct net_device_stats *get_netdev_stats(struct net_device *dev){
+    return dev->netdev_stats;
+}
+
+unsigned int localnet(struct net_device *dev){
+    return (dev)->net_ipaddr & (dev)->net_mask;
 }
 
 static int veth_xmit(struct net_device *dev, struct pk_buff *pkb){
@@ -117,3 +129,11 @@ void veth_poll(void){
         veth_rx();
     }
 }
+
+static struct netdev_ops veth_ops ={
+        .init = veth_dev_init,
+        .hard_xmit = veth_xmit,
+        .get_netdev_stats = get_netdev_stats,
+        .localnet = localnet,
+        .exit = veth_dev_exit,
+};

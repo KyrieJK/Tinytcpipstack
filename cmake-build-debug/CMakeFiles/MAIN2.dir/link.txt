@@ -1,0 +1,1 @@
+/usr/bin/cc -g  -Wl,--enable-auto-import CMakeFiles/MAIN2.dir/utils/checksum.c.o CMakeFiles/MAIN2.dir/utils/ring_buffer.c.o CMakeFiles/MAIN2.dir/utils/lib.c.o  -o MAIN2.exe -Wl,--out-implib,libMAIN2.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

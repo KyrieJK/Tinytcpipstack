@@ -46,11 +46,11 @@ struct net_device{
 
 /* 网络设备操作函数集 */
 struct netdev_ops {
-    int (*hard_xmit)();/* 发送数据包 */
-    int (*init)(struct netdev *);/* 网络设备初始化 */
+    int (*hard_xmit)(struct net_device *,struct pk_buff *);/* 发送数据包 */
+    int (*init)(struct net_device *);/* 网络设备初始化 */
     struct net_device_stats* (*get_netdev_stats)(struct net_device *);/*获取网络设备接口统计信息*/
-    unsigned int (*localnet) (struct netdev *);/* 获取网络设备子网地址 */
-    void (*exit)(struct netdev *);/* 网络设备注销 */
+    unsigned int (*localnet) (struct net_devive *);/* 获取网络设备子网地址 */
+    void (*exit)(struct net_device *);/* 网络设备注销 */
 };
 
 /*网络设备接口统计信息*/

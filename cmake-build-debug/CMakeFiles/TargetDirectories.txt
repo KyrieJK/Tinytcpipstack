@@ -1,0 +1,5 @@
+/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/CMakeFiles/edit_cache.dir
+/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN2.dir
+/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/CMakeFiles/Tinytcpipstack.dir
+/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir

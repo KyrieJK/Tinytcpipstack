@@ -1,0 +1,2 @@
+/usr/bin/ar.exe qc libTinytcpipstack.a  CMakeFiles/Tinytcpipstack.dir/library.c.o
+/usr/bin/ranlib.exe libTinytcpipstack.a

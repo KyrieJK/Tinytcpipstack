@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Tinytcpipstack"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MAIN2">
+				<Option output="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/MAIN2.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="\MinGW\include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 MAIN2"/>
+					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MAIN2/fast">
+				<Option output="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/MAIN2.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="\MinGW\include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 MAIN2/fast"/>
+					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Tinytcpipstack">
+				<Option output="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/libTinytcpipstack.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="\MinGW\include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tinytcpipstack"/>
+					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Tinytcpipstack/fast">
+				<Option output="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/libTinytcpipstack.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="\MinGW\include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tinytcpipstack/fast"/>
+					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MAIN1">
+				<Option output="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/MAIN1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="\MinGW\include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 MAIN1"/>
+					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MAIN1/fast">
+				<Option output="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/MAIN1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="\MinGW\include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 MAIN1/fast"/>
+					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/core/dllnet.c">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/core/pkb.c">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/core/tap.c">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/core/veth.c">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/include/ethernet.h">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/include/inet.h">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/include/lib.h">
+			<Option target="MAIN2"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/include/list.h">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/include/netconfig.h">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/include/netif.h">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/include/route.h">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/include/sock.h">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/include/socket.h">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/include/tap.h">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/library.c">
+			<Option target="Tinytcpipstack"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/library.h">
+			<Option target="Tinytcpipstack"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/test.c">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/utils/checksum.c">
+			<Option target="MAIN2"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/utils/lib.c">
+			<Option target="MAIN2"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/utils/ring_buffer.c">
+			<Option target="MAIN2"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/utils/ring_buffer.h">
+			<Option target="MAIN2"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
