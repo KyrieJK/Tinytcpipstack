@@ -21,8 +21,6 @@ static int tap_dev_init(){
         free(tap);
         return -1;
     }
-//khkjh8yii
-
 
     if (setpersist_tap(tap->fd) < 0) {
         close(tap->fd);
