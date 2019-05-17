@@ -29,6 +29,10 @@ static inline unsigned int _htonl(unsigned int host){
 
 #endif
 
+unsigned int localnet(struct net_device *dev){
+    return (dev)->net_ipaddr & (dev)->net_mask;
+}
+
 /**
  * 此结构用来描述网络设备
  * 在本项目中主要是用来描述tap设备
@@ -109,6 +113,10 @@ struct pk_buff{
 #define PKT_OTHERHOST 2
 #define PKT_MULTICAST 3
 #define PKT_BROADCAST 4
+
+extern struct tapdev *tap;
+extern struct net_device *veth;
+extern struct net_device *loop;
 
 extern void pkb_amount();
 extern void pkb_trim(struct pk_buff *pkb,int len);

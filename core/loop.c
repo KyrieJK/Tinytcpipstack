@@ -36,6 +36,17 @@ static int loop_xmit(struct net_device *dev,struct pk_buff *pkb){
     return pkb->pk_len;
 }
 
+static struct net_device_stats loopback_stats;
+
+static struct net_device_stats *get_netdev_stats(struct net_device *dev){
+    struct net_device_stats *stats = &loopback_stats;
+    stats->rx_packets = dev->netdev_stats.rx_packets;
+    stats->tx_packets = dev->netdev_stats.tx_packets;
+    stats->rx_bytes = dev->netdev_stats.rx_bytes;
+    stats->tx_bytes = dev->netdev_stats.tx_bytes;
+    return stats;
+}
+
 void loop_init(void){
     loop = netdev_alloc("loopback",&loop_ops);
 }
@@ -49,7 +60,7 @@ void loop_exit(void){
  * **/
 static struct netdev_ops loop_ops = {
     .init = loop_dev_init,
-    .xmit = loop_xmit,
+    .hard_xmit = loop_xmit,
     .exit = loop_exit,
 };
 

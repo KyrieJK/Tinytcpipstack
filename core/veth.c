@@ -68,6 +68,7 @@ struct net_device_stats *get_netdev_stats(struct net_device *dev){
     return &dev->netdev_stats;
 }
 
+/* 通过子网掩码识别本地网络段地址 */
 unsigned int localnet(struct net_device *dev){
     return (dev)->net_ipaddr & (dev)->net_mask;
 }
