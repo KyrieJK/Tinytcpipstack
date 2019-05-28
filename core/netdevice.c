@@ -81,6 +81,7 @@ int local_address(unsigned int addr){
     if(localnet(loop) == (loop->net_mask & addr)){
         return 1;
     }
+    /* 遍历设备链表，分别对比IP地址 */
     list_for_each_enrty(dev,&net_devices,net_list){
         if(dev->net_ipaddr == addr)
             return 1;

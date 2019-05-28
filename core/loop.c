@@ -61,6 +61,7 @@ void loop_exit(void){
 static struct netdev_ops loop_ops = {
     .init = loop_dev_init,
     .hard_xmit = loop_xmit,
+    .get_netdev_stats = get_netdev_stats,
     .exit = loop_exit,
 };
 
