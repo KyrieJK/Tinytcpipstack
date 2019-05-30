@@ -72,5 +72,14 @@ void arp_recv(struct net_device *dev,struct pk_buff *pkb){
     struct aprhdr *ahdr = (struct arphdr *)ehdr->eth_data;
     struct arpentry *ae;
 
+    if(ipv4_is_multicast(ahdr->arp_tip)){
+        free_pkb(pkb);
+    }
+
+    if(ahdr->arp_tip != dev->net_ipaddr){
+        free_pkb(pkb);
+    }
+
+    
     
 }
