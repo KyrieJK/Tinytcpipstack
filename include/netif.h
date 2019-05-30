@@ -127,7 +127,11 @@ extern void free_pkb(struct pk_buff *pkb);
 extern struct pk_buff get_pkb(struct pk_buff *pkb);
 extern struct net_device *netdev_alloc(char *dev,struct netdev_ops *);
 extern void netdev_free(struct net_device *dev);
-
+extern void netdev_interrupt(void);
+extern void netdev_init(void);
+extern void netdev_exit(void);
+extern void netdev_tx(struct net_device *dev,struct pk_buff *pkb,int len,unsigned short protocol,unsigned char *dst);
+extern int local_address(unsigned int addr);
 extern void ethernet_in(struct net_device *dev, struct pk_buff *pkb);
 
 #endif //TINYTCPIPSTACK_NETIF_H

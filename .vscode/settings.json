@@ -3,6 +3,7 @@
         "lib.h": "c",
         "list.h": "c",
         "socket.h": "c",
-        "ethernet.h": "c"
+        "ethernet.h": "c",
+        "netif.h": "c"
     }
 }

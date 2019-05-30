@@ -3,17 +3,24 @@
 
 #include "ethernet.h"
 #include "list.h"
+#include "netif.h"
+#include "ip.h"
 
 /* 定义L2、L3 协议类型 */
 #define ARP_ETHERNET
 #define ARP_IP
+
+/* ARP高速缓存表项容量 */
+#define ARP_CACHE_SZ 20
+#define ARP_TIMEOUT 600 /* 缓存项过期时间 */
+#define ARP_WAITTIME 1 /* arp等待时间 */
 
 /* ARP高速缓存表项状态 */
 #define ARP_FREE 1
 #define ARP_PENDING 2
 #define ARP_RESOLVED 3
 
-#define ARP_REQ_RETRY 4
+#define ARP_REQ_ATTEMPT 4
 
 /* 硬件地址类型 */
 #define ARPHRD_ETHER 1
@@ -25,7 +32,9 @@
 #define ARPOP_INREQUEST       8     /* InARP request */
 #define ARPOP_INREPLY         9     /* InARP reply */
 
-struct arp{
+#define ARP_HRD_SZ sizeof(struct arphdr)
+
+struct arphdr{
     unsigned short arp_hrd; /* hardware address type(L2) */
     unsigned short arp_pro; /* protocol address type(L3) */
     unsigned char arp_hlen; /* hardware address length */
@@ -39,4 +48,27 @@ struct arp{
 #else
     unsigned char arp_data[0];                /* arp数据域 通过变长数组表示 */
 #endif            
-} __attribute__((packed))
+} __attribute__((packed));
+
+/* 主机字节序序转换为网络字节序 */
+static inline void arp_hton(struct arphdr *ahdr){
+    ahdr->arp_hrd = _htons(ahdr->arp_hrd);
+    ahdr->arp_pro = _htons(ahdr->arp_pro);
+    ahdr->arp_op = _htons(ahdr->arp_op);
+}
+
+#define arp_ntoh(ahdr) arp_hton(ahdr)
+
+/* arp高速缓存表项 */
+struct arpentry{
+    struct list_head ae_list; /* pending queue for resolved hardware address */
+    struct net_device *ae_dev; /* 关联的网络接口 */
+    int ae_retry; /* arp请求重复次数 */
+    int ae_ttl; /* arp entry timeout */
+    unsigned int ae_state; /* arp entry state */
+    unsigned short ae_pro; /* L3 protocol */
+    unsigned int ae_ipaddr; /* L3 protocol address */
+    unsigned char ae_hwaddr[ETHERNET_ADDR_LEN]; /* L2 protocol address(ethernet) */
+};
+
+#endif

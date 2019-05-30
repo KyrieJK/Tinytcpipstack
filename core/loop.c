@@ -2,7 +2,7 @@
 #include "lib.h"
 
 #define LOOPBACK_MTU 1500
-#define LOOPBACK_IPADDR 0x0100007F /* 127.0.0.1 */
+#define LOOPBACK_IPADDR 0x7F000001 /* 127.0.0.1 */
 #define LOOPBACK_NETMASK 0x000000FF /* 255.0.0.0 */
 
 /**
