@@ -71,4 +71,6 @@ struct arpentry{
     unsigned char ae_hwaddr[ETHERNET_ADDR_LEN]; /* L2 protocol address(ethernet) */
 };
 
+extern void arp_request(struct arpentry *ae);
+
 #endif

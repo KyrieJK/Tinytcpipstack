@@ -69,7 +69,7 @@ void arp_in(struct net_device *dev,struct pk_buff *pkb){
 
 void arp_recv(struct net_device *dev,struct pk_buff *pkb){
     struct ethernet_hdr *ehdr = (struct ethernet_hdr *)pkb->pk_data;
-    struct aprhdr *ahdr = (struct arphdr *)ehdr->eth_data;
+    struct arphdr *ahdr = (struct arphdr *)ehdr->eth_data;
     struct arpentry *ae;
 
     if(ipv4_is_multicast(ahdr->arp_tip)){
