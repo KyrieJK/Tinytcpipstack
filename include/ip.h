@@ -14,4 +14,7 @@
 #define ipv4_is_broadcast(addr) (addr == _htonl(0xffffffff))
 #define ipv4_is_zeronet(addr) ((addr & _htonl(0xff000000)) == _htonl(0x00000000)) /* 0.0.0.0表示本网络中的所有主机 */
 
+#define IPFMT "%d.%d.%d.%d"
+#define ipfmt(ip) (ip) & 0xff,((ip) >> 8) & 0xff,((ip) >> 16) & 0xff,((ip) >> 24) & 0xff
+
 #endif

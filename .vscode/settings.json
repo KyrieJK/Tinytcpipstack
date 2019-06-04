@@ -4,6 +4,7 @@
         "list.h": "c",
         "socket.h": "c",
         "ethernet.h": "c",
-        "netif.h": "c"
+        "netif.h": "c",
+        "arp.h": "c"
     }
 }

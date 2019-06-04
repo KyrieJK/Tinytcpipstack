@@ -67,6 +67,7 @@ void arp_in(struct net_device *dev,struct pk_buff *pkb){
     return;
 }
 
+/* 解析pkb中的arphdr，与现有arp缓存表做对比 */
 void arp_recv(struct net_device *dev,struct pk_buff *pkb){
     struct ethernet_hdr *ehdr = (struct ethernet_hdr *)pkb->pk_data;
     struct arphdr *ahdr = (struct arphdr *)ehdr->eth_data;
@@ -80,6 +81,35 @@ void arp_recv(struct net_device *dev,struct pk_buff *pkb){
         free_pkb(pkb);
     }
 
+    ae = arp_lookup(ahdr->arp_pro,ahdr->arp_sip);
+    if(ae!=NULL){
+        if(hwacmp(ae->ae_hwaddr,ahdr->arp_sha) != 0){ 
+            ae->ae_state = ARP_PENDING;/* PENDING means a request for this entry has been sent,but the reply has not been received yet,用于等待arp_reply */
+            arp_queue_send(ae); /* 所以需要再次retry 发送pending packet */
+        }
+        ae->ae_state = ARP_RESOLVED;
+        ae->ae_ttl = ARP_TIMEOUT;
+    }else if(ahdr->arp_op == ARPOP_REQUEST){ /* 如果判断entry为空，且arp_op 为request，则新插入一条ARP缓存记录 */
+        arp_insert(dev,ahdr->arp_pro,ahdr->arp_sip,ahdr->arp_sha);
+    }
+
+    if(ahdr->arp_op == ARPOP_REQUEST){
+        arp_reply(dev,pkb);
+        return;
+    }
     
-    
+}
+
+/* 回复arp请求 */
+void arp_reply(struct net_device *dev,struct pk_buff *pkb){
+    struct ethernet_hdr *ehdr = (struct ethernet_hdr *)pkb->pk_data;
+    struct arphdr *ahdr = (struct arphdr *)ehdr->eth_data;
+    ahdr->arp_op = ARPOP_REPLY;
+    hwacpy(ahdr->arp_tha,ahdr->arp_sha);
+    ahdr->arp_tip = ahdr->arp_sip;
+    hwacpy(ahdr->arp_sha,dev->net_hwaddr);
+    ahdr->arp_sip = dev->net_ipaddr;
+    arp_hton(ahdr);/* 字节序转换 */
+
+    netdev_tx(dev,pkb,ARP_HRD_SZ,ETHERNET_TYPE_ARP,ehdr->eth_src);
 }

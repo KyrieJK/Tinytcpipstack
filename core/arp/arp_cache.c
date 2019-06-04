@@ -176,4 +176,28 @@ static const char *arpstate(struct arpentry *ae){
     return __arpstate[ae->ae_state];
 }
 
+static struct arpentry *arp_cache_freespace(void){
+    struct arpentry *ae;
+    for(ae = arp_cache_head;ae<arp_cache_end;ae++){
+        if(ae->ae_state == ARP_FREE){
+            return ae;
+        }
+    }
+    return NULL;
+}
+
+void arp_cache_traverse(void){
+    struct arpentry *ae;
+    arp_cache_lock();
+    for(ae = arp_cache_head;ae<arp_cache_end;ae++){
+        if(ae->ae_state == ARP_FREE)
+            continue;
+        printf("HWaddress               Address");
+        printf("%s %d",arpstate(ae),((ae->ae_ttl < 0) ? 0 : ae->ae_ttl));
+        printf(mac_to_p,mac_addr(ae->ae_hwaddr));
+        printf(IPFMT,ipfmt(ae->ae_ipaddr));
+    }
+    arp_cache_unlock();
+}
+
 

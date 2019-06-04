@@ -73,4 +73,12 @@ struct arpentry{
 
 extern void arp_request(struct arpentry *ae);
 
+extern void arp_queue_send(struct arpentry *ae);
+extern void arp_queue_drop(struct arpentry *ae);
+
+extern struct arpentry *arp_alloc(void);
+extern struct arpentry *arp_lookup(unsigned short pro,unsigned int ipaddr);
+extern struct arpentry *arp_lookup_resolv(unsigned short pro,unsigned int ipaddr);
+extern int arp_insert(struct net_device *nd,unsigned short pro,unsigned int ipaddr,unsigned char *hwaddr);
+
 #endif
