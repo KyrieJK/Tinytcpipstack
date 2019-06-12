@@ -30,6 +30,7 @@ struct sock{
     struct list_head recv_queue;
     unsigned int hash; /* 哈希表，存储元素为sock结构体，便于索引 */
     struct hlist_node hash_list;
+    struct wait_simulation *recv_wait;
     int refcnt; /* 引用计数 */
 };
 

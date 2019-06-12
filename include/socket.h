@@ -36,6 +36,7 @@ struct socket{
     unsigned int type; /* socket在特定协议族下支持的套接字类型 */
     struct sock *sk; /* 指向sock结构的指针 */
     struct socket_ops *ops;
+    struct wait_simulation sleep;
     int refcnt; /* 文件引用数，因为socket在linux系统中是文件形式 */
 };
 
