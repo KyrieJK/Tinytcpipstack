@@ -9,6 +9,7 @@
 #include "list.h"
 
 struct sock_addr{
+//    和内核协议栈中源码相比，我这里实现的用户态协议栈仅支持INET地址族，因此没有family属性
     unsigned int src_addr;
     unsigned int dst_addr;
     unsigned short src_port;

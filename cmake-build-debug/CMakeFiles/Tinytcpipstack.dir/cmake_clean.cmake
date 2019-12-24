@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Tinytcpipstack.dir/library.c.o"
-  "libTinytcpipstack.pdb"
   "libTinytcpipstack.a"
+  "libTinytcpipstack.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

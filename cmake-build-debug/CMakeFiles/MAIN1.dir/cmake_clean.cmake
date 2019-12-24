@@ -1,12 +1,14 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/MAIN1.dir/test.c.o"
+  "CMakeFiles/MAIN1.dir/core/dllnet.c.o"
+  "CMakeFiles/MAIN1.dir/core/pkb.c.o"
+  "CMakeFiles/MAIN1.dir/core/socket/inet.c.o"
+  "CMakeFiles/MAIN1.dir/core/socket/sock.c.o"
+  "CMakeFiles/MAIN1.dir/core/socket/socket.c.o"
   "CMakeFiles/MAIN1.dir/core/tap.c.o"
   "CMakeFiles/MAIN1.dir/core/veth.c.o"
-  "CMakeFiles/MAIN1.dir/core/pkb.c.o"
-  "CMakeFiles/MAIN1.dir/core/dllnet.c.o"
+  "CMakeFiles/MAIN1.dir/test.c.o"
+  "MAIN1"
   "MAIN1.pdb"
-  "MAIN1.exe"
-  "libMAIN1.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

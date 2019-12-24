@@ -4,13 +4,16 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/core/dllnet.c" "/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/dllnet.c.o"
-  "/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/core/pkb.c" "/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/pkb.c.o"
-  "/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/core/tap.c" "/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/tap.c.o"
-  "/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/core/veth.c" "/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/veth.c.o"
-  "/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/test.c" "/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/test.c.o"
+  "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/dllnet.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/dllnet.c.o"
+  "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/pkb.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/pkb.c.o"
+  "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/socket/inet.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/socket/inet.c.o"
+  "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/socket/sock.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/socket/sock.c.o"
+  "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/socket/socket.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/socket/socket.c.o"
+  "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/tap.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/tap.c.o"
+  "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/veth.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/veth.c.o"
+  "/Users/jkerving/Codework/CProject/Tinytcpipstack/test.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/test.c.o"
   )
-set(CMAKE_C_COMPILER_ID "GNU")
+set(CMAKE_C_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH

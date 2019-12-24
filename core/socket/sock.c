@@ -15,6 +15,7 @@
 #include "sock.h"
 #include "lib.h"
 #include "list.h"
+#include "../../include/list.h"
 
 int free_socks = 0;
 

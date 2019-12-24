@@ -48,7 +48,6 @@ static int veth_dev_init(struct net_device *dev){
     if(tap_dev_init()<0) {
         perror("Cannot init tapdevice");
     }
-
     /* 初始化veth，用于提供给协议栈设备信息 */
     dev->net_mtu = tap->dev.net_mtu;
     dev->net_ipaddr = FAKE_IPADDR;

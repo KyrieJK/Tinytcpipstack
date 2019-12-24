@@ -2,9 +2,9 @@
  * 实现套接口层的系统调用
  */
 
-#include "lib.h"
-#include "socket.h"
-#include "wait_simulation.h"
+#include "../../include/socket.h"
+#include "../../include/wait_simulation.h"
+#include "../../include/lib.h"
 
 
 static struct socket *alloc_socket(int family,int type){
@@ -23,20 +23,22 @@ static struct socket* get_socket(struct socket *sock){
     return sock;
 }
 
+static void __free_socket(struct socket *sock) {
+    if (sock->ops){
+        sock->ops->close(sock);
+        sock->ops=NULL;
+    }
+
+    free(sock);//释放占用内存空间
+}
+
 static void free_socket(struct socket *sock){
     if(--sock->refcnt<=0){
         __free_socket(sock);
     }
 }
 
-static void __free_socket(struct socket *sock){
-    if(sock->ops){
-        sock->ops->close(sock);
-        sock->ops =NULL;
-    }
 
-    free(sock);//释放占用内存空间
-}
 
 struct socket *_socket(int family,int type,int protocol){
     struct socket *sock = NULL;

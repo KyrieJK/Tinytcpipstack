@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/utils/checksum.c" "/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN2.dir/utils/checksum.c.o"
-  "/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/utils/lib.c" "/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN2.dir/utils/lib.c.o"
-  "/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/utils/ring_buffer.c" "/cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN2.dir/utils/ring_buffer.c.o"
+  "/Users/jkerving/Codework/CProject/Tinytcpipstack/utils/checksum.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN2.dir/utils/checksum.c.o"
+  "/Users/jkerving/Codework/CProject/Tinytcpipstack/utils/lib.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN2.dir/utils/lib.c.o"
+  "/Users/jkerving/Codework/CProject/Tinytcpipstack/utils/ring_buffer.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN2.dir/utils/ring_buffer.c.o"
   )
-set(CMAKE_C_COMPILER_ID "GNU")
+set(CMAKE_C_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH

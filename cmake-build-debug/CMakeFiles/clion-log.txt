@@ -1,4 +1,4 @@
-C:\Users\JKerving\.CLion2018.2\system\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/jkerving/Codework/CProject/Tinytcpipstack
 -- Configuring done
 -- Generating done
--- Build files have been written to: /cygdrive/c/Users/JKerving/CLionProjects/Tinytcpipstack/cmake-build-debug
+-- Build files have been written to: /Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug
