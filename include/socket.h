@@ -45,7 +45,7 @@ struct socket{
     struct sock *sk; /* 指向sock结构的指针 */
     struct socket_ops *ops; /* 指向套接口系统调用中选择对应类型的套接口层接口，用来将套接口层系统调用映射到相应的传输层协议实现 */
     struct wait_simulation sleep;
-    int refcnt; /* 文件引用数，因为socket在linux系统中是文件形式,unix中everything is file */
+    int refcnt; /* 文件引用计数，因为socket在linux系统中是文件形式,unix中everything is file */
 };
 
 

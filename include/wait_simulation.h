@@ -25,7 +25,7 @@ static void wait_init(struct wait_simulation *w){
 
 static int wake_up(struct wait_simulation *w){
     pthread_mutex_lock(&w->mutex);
-    if(w->dead){
+    if(w->dead){ /* 判断线程是否存活 */
         pthread_mutex_unlock(&w->mutex);
         return -(w->dead);
     }

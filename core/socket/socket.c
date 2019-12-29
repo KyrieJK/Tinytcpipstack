@@ -10,9 +10,9 @@
 static struct socket *alloc_socket(int family,int type){
     struct socket *sock;
     sock = xcalloc(sizeof(*sock));
-    sock->state = SS_UNCONNECTED;
-    sock->family = family;
-    sock->type = type;
+    sock->state = SS_UNCONNECTED; /* 初始化状态为UNCONNECTED状态 */
+    sock->family = family; /* 设置协议族 */
+    sock->type = type; /* 套接字类型 */
     wait_init(&sock->sleep);
     sock->refcnt = 1;
     return sock;

@@ -11,7 +11,7 @@
  * 本项目中仅支持Internet协议族套接字
  * 因此仅实现了INET套接字种类
  * */
-struct inet{
+struct inet_type{
     struct sock *(alloc_sock)(int);/* sock结构分配函数 */
     int type; /*套接字类型*/
     int protocol;/* 传输协议 */

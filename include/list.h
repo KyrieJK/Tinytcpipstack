@@ -137,7 +137,9 @@ static inline void hlist_node_init(struct hlist_node *node){
 }
 
 static inline void __hlist_del(struct hlist_node *n){
-    *(n->pprev) = n->next;//pprev为二级指针hlist_node**，需要解引用后解析为hlist_node*类型
+    struct hlist_node *next = n->next;
+    struct hlist_node **pprev = n->pprev;
+    *pprev=next;
     if (n->next != NULL) {
         n->next->pprev = n->pprev;
     }
