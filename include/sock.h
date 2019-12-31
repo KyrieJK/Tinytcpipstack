@@ -56,4 +56,18 @@ struct sock_ops{
 #define hlist_for_each_sock(sk,node,head)\
     hlist_for_each_entry(sk,node,head,hash_list)
 
+extern void sock_add_hash(struct sock *,struct hlist_head *);
+extern void sock_del_hash(struct sock *);
+
+extern struct sock *get_sock(struct sock *sk);
+extern void free_sock(struct sock *sk);
+
+extern void sock_recv_notify(struct sock *sk);
+extern struct pk_buff *sock_recv_pkbuff(struct sock *sk);
+extern int sock_close(struct sock *sk);
+extern int sock_autobind(struct sock *sk);
+
+extern int alloc_socks;
+extern int free_socks;
+
 #endif //TINYTCPIPSTACK_SOCK_H

@@ -78,7 +78,7 @@ preinstall:
 CMakeFiles/MAIN2.dir/all:
 	$(MAKE) -f CMakeFiles/MAIN2.dir/build.make CMakeFiles/MAIN2.dir/depend
 	$(MAKE) -f CMakeFiles/MAIN2.dir/build.make CMakeFiles/MAIN2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles --progress-num=10,11,12,13 "Built target MAIN2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles --progress-num=11,12,13,14 "Built target MAIN2"
 .PHONY : CMakeFiles/MAIN2.dir/all
 
 # Build rule for subdir invocation for target.
@@ -105,12 +105,12 @@ CMakeFiles/MAIN2.dir/clean:
 CMakeFiles/MAIN1.dir/all:
 	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/depend
 	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target MAIN1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target MAIN1"
 .PHONY : CMakeFiles/MAIN1.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/MAIN1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles 10
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/MAIN1.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/MAIN1.dir/rule
@@ -132,7 +132,7 @@ CMakeFiles/MAIN1.dir/clean:
 CMakeFiles/Tinytcpipstack.dir/all:
 	$(MAKE) -f CMakeFiles/Tinytcpipstack.dir/build.make CMakeFiles/Tinytcpipstack.dir/depend
 	$(MAKE) -f CMakeFiles/Tinytcpipstack.dir/build.make CMakeFiles/Tinytcpipstack.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles --progress-num=14,15 "Built target Tinytcpipstack"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles --progress-num=15,16 "Built target Tinytcpipstack"
 .PHONY : CMakeFiles/Tinytcpipstack.dir/all
 
 # Build rule for subdir invocation for target.

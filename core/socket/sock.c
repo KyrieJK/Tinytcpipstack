@@ -81,6 +81,7 @@ int sock_close(struct sock *sk) {
 }
 
 int sock_autobind(struct sock *sk){
+    /* 如果原端口没有设置，则设置src_port=0，由内核自主选择端口号 */
     if (sk->ops->set_port)
         return sk->ops->set_port(sk,0);
     return -1;
