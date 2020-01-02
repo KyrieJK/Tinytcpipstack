@@ -29,10 +29,6 @@ static inline unsigned int _htonl(unsigned int host){
 
 #endif
 
-unsigned int localnet(struct net_device *dev){
-    return (dev)->net_ipaddr & (dev)->net_mask;
-}
-
 /**
  * 此结构用来描述网络设备
  * 在本项目中主要是用来描述tap设备
@@ -47,6 +43,8 @@ struct net_device{
     struct netdev_ops *net_ops;/* 网络设备操作函数集 */
     struct net_device_stats netdev_stats;/* 网络设备接口数据包统计信息 */
 };
+
+#define LOCALNET(dev) ((dev)->net_ipaddr & (dev)->net_mask)
 
 /* 网络设备操作函数集 */
 struct netdev_ops {

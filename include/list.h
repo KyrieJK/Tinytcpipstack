@@ -78,7 +78,7 @@ static inline void list_del_init(struct list_head *del_list){
 #define list_last_entry(head,type,member)\
     list_entry((head)->prev,type,member)
 
-#define list_for_each_enrty(entry,head,member)\
+#define list_for_each_entry(entry,head,member)\
     for(entry = list_first_entry(head,typeof(*entry),member);\
         &entry->member != (head);\
         entry=list_first_entry(&entry->member,typeof(*entry),member))
