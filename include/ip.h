@@ -9,6 +9,50 @@
 #define IP_VERSION_4 4
 
 
+/*
+ * IP报文结构体
+ * 我们定义默认情况下本地字节序为小端字节序
+ */
+struct ip{
+    /*位域结构：这是在读kernel代码新学到的东西，平时很少用到这个结构。
+     *有些信息在存储时，并不需要占用一个完整的字节，而只需占几个或一个二进制位。
+     *Bit field为一种数据结构，可以把数据以位的形式紧凑的储存，并允许程序员对此结构的位进行操作
+     *这种数据结构的好处是它可以使数据单元节省存储空间,当程序需要大数量级的数据单元时，使用这种数据结构就显得非常重要。
+     * 第二个好处是位段可以很方便的访问一个整数值的部分从而可以化简源代码。
+     * 因此我们可以看到linux kernel程序中大量使用了Bit field结构
+     * 但是这种数据结构的缺点在于，Bit field实现依赖于具体的机器和系统，在不同的平台可能有不同的结果，这导致了Bit field在本质上不可移植的
+     */
+    unsigned char ihl:4, //协议头长度，指的是首部占有的32位字数，该段占4位。因此最大值为15，以4字节为单位，因此IP头最大长度为60，由于基本报头长度为20字节，因此IP选项最多为40字节
+              version:4; //IP协议版本
+    unsigned char tos; /*服务类型，此字段的值已经与标准协议有所区别。可以为流媒体相关协议所使用*/
+    unsigned short tot_len; /*报文总长度，包括报头和分片*/
+    unsigned short id; /*IP标识。标识字段唯一标识主机发送的每一份数据报。通常每发送一份数据报，ID值就会递增1*/
+    unsigned short frag_off; /*分片在原始报文中的偏移*/
+    unsigned char ttl; /*TTL生存时间，路由器在每次转发时递减此值*/
+    unsigned char protocol; /*L4层协议标识*/
+    unsigned short checksum; /*校验和*/
+    unsigned int saddr; /*源地址*/
+    unsigned int daddr; /*目的地址*/
+    unsigned char data[0]; /*数据域data field*/
+};
+
+/**
+ * 分片结构体
+ */
+struct fragment{
+    unsigned short frag_id;
+    unsigned int frag_src;
+    unsigned int frag_dst;
+    unsigned short frag_pro;
+    unsigned int frag_hlen;
+    unsigned int frag_rsize;
+    unsigned int frag_size;
+    int frag_ttl;
+    unsigned int frag_flags;
+    struct list_head frag_list;
+    struct list_head frag_pkb;
+};
+
 #define ipv4_is_loopback(addr) ((addr & _htonl(0xff000000)) == _htonl(0x7f000000))
 #define ipv4_is_multicast(addr) ((addr & _htonl(0xf0000000)) == _htonl(0xe0000000))
 #define ipv4_is_broadcast(addr) (addr == _htonl(0xffffffff))

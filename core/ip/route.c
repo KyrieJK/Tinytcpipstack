@@ -53,6 +53,7 @@ void rt_add(unsigned int net, unsigned int netmask, unsigned int gw,int metric, 
 
 }
 
+/* 路由表初始化 */
 void rt_init(void){
     rt_add(LOCALNET(loop),loop->net_mask,0,0,RT_LOCALHOST,loop);
     rt_add(veth->net_ipaddr,0xffffffff,0,0,RT_LOCALHOST,loop);
