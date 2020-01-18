@@ -8,6 +8,18 @@
 #define IP_ALEN 4 /* 单位是字节，即为4*8=32bit */
 #define IP_VERSION_4 4
 
+/**
+ * 协议类型
+ */
+#define IP_P_IP		0
+#define IP_P_ICMP	1
+#define IP_P_IGMP	2
+#define IP_P_TCP	6
+#define IP_P_EGP	8
+#define IP_P_UDP	17
+#define IP_P_OSPF	89
+#define IP_P_RAW	255
+#define IP_P_MAX	256
 
 /*
  * IP报文结构体
@@ -26,7 +38,7 @@ struct ip{
               version:4; //IP协议版本
     unsigned char tos; /*服务类型，此字段的值已经与标准协议有所区别。可以为流媒体相关协议所使用*/
     unsigned short tot_len; /*报文总长度，包括报头和分片*/
-    unsigned short id; /*IP标识。标识字段唯一标识主机发送的每一份数据报。通常每发送一份数据报，ID值就会递增1*/
+    unsigned short id; /*IP标识。标识字段唯一标识主机发送的每一份数据报。通常每发送一份数据报，ID值就会递增1。来自同一个数据报的若干分片必须有一样的值*/
     unsigned short frag_off; /*分片在原始报文中的偏移*/
     unsigned char ttl; /*TTL生存时间，路由器在每次转发时递减此值*/
     unsigned char protocol; /*L4层协议标识*/
@@ -35,6 +47,31 @@ struct ip{
     unsigned int daddr; /*目的地址*/
     unsigned char data[0]; /*数据域data field*/
 };
+
+#define ipversion(ip)   ((ip)->version)
+#define iphlen(ip)  ((ip)->ihl*4)
+#define ipdlen(ip)  ((ip)->tot_len-iphlen(iphdr))
+#define ipdata(ip)  ((unsigned char *)(ip)+iphlen(ip))
+#define pkb2ip(pkb) ((struct ip *)((pkb)->pk_data+ETH_HRD_SZ))
+
+static inline void ip_ntoh(struct ip* iphdr){
+    iphdr->tot_len=_ntohs(iphdr->tot_len);
+    iphdr->id=_ntohs(iphdr->id);
+    iphdr->frag_off=_ntohs(iphdr->frag_off);
+}
+
+#define ip_hton(ip) ip_ntoh(ip)
+
+/**
+ * 通过子网掩码判断是否处于同一子网下
+ * @param netmask
+ * @param ip1
+ * @param ip2
+ * @return
+ */
+static inline int is_subnet(unsigned int netmask,unsigned int ip1, unsigned int ip2){
+    return ((netmask&ip1)==(netmask&ip2));
+}
 
 /**
  * 分片结构体

@@ -14,11 +14,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d31b3a03-3bc1-4eee-9c31-210d8fcccb76" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/include/udp.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/ip/route.c" beforeDir="false" afterPath="$PROJECT_DIR$/core/ip/route.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Tinytcpipstack.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Tinytcpipstack.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/ip.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/ip.h" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,29 +35,22 @@
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectId" id="1SBTfIaHErpxa89ytjFYjRRszIm" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\JKerving\CLionProjects\Tinytcpipstack\include" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="CMake Application.Build All">
     <configuration default="true" type="Applet" factoryName="Applet">
@@ -172,6 +166,18 @@
       <item itemvalue="CMake Application.Tinytcpipstack" />
     </list>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -214,7 +220,13 @@
       <workItem from="1577339995031" duration="99000" />
       <workItem from="1577341712119" duration="16307000" />
       <workItem from="1577932423547" duration="6257000" />
-      <workItem from="1578229952707" duration="4525000" />
+      <workItem from="1578229952707" duration="5334000" />
+      <workItem from="1578322578664" duration="3933000" />
+      <workItem from="1578360542094" duration="115000" />
+      <workItem from="1578360668204" duration="351000" />
+      <workItem from="1578925685362" duration="4000" />
+      <workItem from="1578926415657" duration="1152000" />
+      <workItem from="1579348494561" duration="34000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1555669372375</created>
@@ -391,7 +403,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577979042247</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="IP结构体/Fragment结构体">
+      <created>1578273556386</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1578273556386</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -432,7 +451,24 @@
     <MESSAGE value="更新相关注释以及套接口层相关函数" />
     <MESSAGE value="更新相关注释以及套接口层INET协议族相关函数实现" />
     <MESSAGE value="route部分功能实现" />
-    <option name="LAST_COMMIT_MESSAGE" value="route部分功能实现" />
+    <MESSAGE value="IP结构体/Fragment结构体" />
+    <option name="LAST_COMMIT_MESSAGE" value="IP结构体/Fragment结构体" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="349" y="147" key="SettingsEditor" timestamp="1578360656254">
+      <screen x="0" y="23" width="1680" height="972" />
+    </state>
+    <state x="349" y="147" key="SettingsEditor/0.23.1680.971@0.23.1680.971" timestamp="1578360562794" />
+    <state x="349" y="147" key="SettingsEditor/0.23.1680.972@0.23.1680.972" timestamp="1578360656254" />
+    <state x="519" y="340" key="com.intellij.ide.util.TipDialog" timestamp="1579362806711">
+      <screen x="0" y="23" width="1680" height="967" />
+    </state>
+    <state x="519" y="340" key="com.intellij.ide.util.TipDialog/0.23.1680.967/1680.23.3840.2137@0.23.1680.967" timestamp="1579362806711" />
+    <state x="519" y="340" key="com.intellij.ide.util.TipDialog/0.23.1680.967@0.23.1680.967" timestamp="1579348495169" />
+    <state x="519" y="341" key="com.intellij.ide.util.TipDialog/0.23.1680.971@0.23.1680.971" timestamp="1578360544490" />
+    <state x="519" y="341" key="com.intellij.ide.util.TipDialog/0.23.1680.973@0.23.1680.973" timestamp="1578360750859" />
+    <state x="519" y="342" key="com.intellij.ide.util.TipDialog/0.23.1680.974/1680.23.3840.2137@0.23.1680.974" timestamp="1578926416640" />
+    <state x="519" y="343" key="com.intellij.ide.util.TipDialog/0.23.1680.978/1680.23.3840.2137@0.23.1680.978" timestamp="1578925687264" />
   </component>
   <component name="masterDetails">
     <states>

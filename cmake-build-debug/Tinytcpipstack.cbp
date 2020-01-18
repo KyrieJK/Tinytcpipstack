@@ -212,6 +212,9 @@
 		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/include/tap.h">
 			<Option target="MAIN1"/>
 		</Unit>
+		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/include/udp.h">
+			<Option target="MAIN1"/>
+		</Unit>
 		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/library.c">
 			<Option target="Tinytcpipstack"/>
 		</Unit>
