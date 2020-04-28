@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/socket/sock.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/socket/sock.c.o"
   "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/socket/socket.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/socket/socket.c.o"
   "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/tap.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/tap.c.o"
+  "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/udp/udp_sock.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/udp/udp_sock.c.o"
   "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/veth.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/veth.c.o"
   "/Users/jkerving/Codework/CProject/Tinytcpipstack/test.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/test.c.o"
   )

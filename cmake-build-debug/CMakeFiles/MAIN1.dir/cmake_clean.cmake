@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/MAIN1.dir/core/socket/sock.c.o"
   "CMakeFiles/MAIN1.dir/core/socket/socket.c.o"
   "CMakeFiles/MAIN1.dir/core/tap.c.o"
+  "CMakeFiles/MAIN1.dir/core/udp/udp_sock.c.o"
   "CMakeFiles/MAIN1.dir/core/veth.c.o"
   "CMakeFiles/MAIN1.dir/test.c.o"
   "MAIN1"
