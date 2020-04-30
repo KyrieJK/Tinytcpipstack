@@ -48,6 +48,7 @@ struct ip{
     unsigned char data[0]; /*数据域data field*/
 };
 
+#define IP_HRD_SZ sizeof(struct ip)
 #define ipversion(ip)   ((ip)->version)
 #define iphlen(ip)  ((ip)->ihl*4)
 #define ipdlen(ip)  ((ip)->tot_len-iphlen(iphdr))
