@@ -26,5 +26,10 @@ struct rt_entry{
 #define RT_LOCALHOST 0x00000001 /* 本地子网地址 */
 #define RT_DEFAULT 0x00000002 /* 默认网关 */
 
+extern int rt_output(struct pk_buff *);
+extern void rt_init(void);
+extern void rt_add(unsigned int, unsigned int, unsigned int, int, unsigned int,
+                   struct net_device *);
+
 
 #endif //TINYTCPIPSTACK_ROUTE_H

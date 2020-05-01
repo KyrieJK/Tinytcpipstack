@@ -5,6 +5,8 @@
 #include "../../include/socket.h"
 #include "../../include/ip.h"
 #include "../../include/udp.h"
+#include "../../include/route.h"
+#include "../../include/checksum.h"
 
 
 #define UDP_HTABLE_SIZE 128
@@ -199,6 +201,29 @@ static int udp_init_pkb(struct sock *sk, struct pk_buff *pkb, void *buf, int siz
     iphdr->id = _htons(udp_id);
     iphdr->frag_off=0;
     iphdr->ttl=UDP_DEFAULT_TTL;
+    iphdr->protocol=sk->protocol;
+    iphdr->daddr=skaddr->dst_addr;
+    if (rt_output(pkb)<0){
+        return -1;
+    }
+    udphdr->src_port=sk->sk_addr.src_port;
+    udphdr->dst_port=skaddr->dst_port;
+    udphdr->length=_htons(size+UDP_HRD_SZ);
+    memcpy(udphdr->data,buf,size);/*填充数据报*/
+    udp_chksum(iphdr->saddr,iphdr->daddr,_ntohs(udphdr->length),(unsigned short *)udphdr);
+    return 0;
+}
+
+struct sock *udp_lookup_sock(unsigned short nport){
+    struct hlist_head *head = udp_slot_head(_ntohs(nport));
+    struct hlist_node *node;
+    struct sock *sk;
+    if (hlist_empty(head))
+        return NULL;
+    hlist_for_each_sock(sk,node,head)
+        if (sk->sk_addr.src_port==nport)
+            return get_sock(sk);
+    return NULL;
 }
 
 void udp_init(void) {
@@ -214,5 +239,19 @@ void udp_init(void) {
     pthread_mutex_init(&udp_table.mutex, NULL);
     udp_id = 0;
 }
+
+struct sock *udp_alloc_sock(int protocol){
+    struct udp_sock *udp_sock;
+    if (protocol && protocol!=IP_P_UDP){
+        return NULL;
+    }
+    udp_sock=xcalloc(sizeof(*udp_sock));
+    alloc_socks++;
+    udp_sock->sk.ops=&udp_ops;
+    udp_id++;
+    return &udp_sock->sk;
+}
+
+
 
 

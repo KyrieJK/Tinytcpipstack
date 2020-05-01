@@ -12,8 +12,8 @@
  * IP数据报长度指的是整个IP数据报的总长度，因此UDP长度是IP长度减去IP首部长度
  */
 struct udp{
-    unsigned short src; //16位源地址
-    unsigned short dst; //16位目的地址
+    unsigned short src_port; //16位源端口号
+    unsigned short dst_port; //16位目的端口号
     unsigned short length; //16位UDP长度
     unsigned short checksum; //16位UDP校验和
     unsigned char data[0]; //UDP数据域

@@ -231,6 +231,9 @@
 		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/core/veth.c">
 			<Option target="MAIN1"/>
 		</Unit>
+		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/include/checksum.h">
+			<Option target="MAIN2"/>
+		</Unit>
 		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/include/ethernet.h">
 			<Option target="MAIN1"/>
 		</Unit>
