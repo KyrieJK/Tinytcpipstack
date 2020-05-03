@@ -207,6 +207,9 @@
 		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/core/dllnet.c">
 			<Option target="MAIN1"/>
 		</Unit>
+		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/core/ip/icmp.c">
+			<Option target="MAIN1"/>
+		</Unit>
 		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/core/ip/route.c">
 			<Option target="MAIN1"/>
 		</Unit>
