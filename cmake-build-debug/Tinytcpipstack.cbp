@@ -237,6 +237,9 @@
 		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/include/ethernet.h">
 			<Option target="MAIN1"/>
 		</Unit>
+		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/include/icmp.h">
+			<Option target="MAIN1"/>
+		</Unit>
 		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/include/inet.h">
 			<Option target="MAIN1"/>
 		</Unit>

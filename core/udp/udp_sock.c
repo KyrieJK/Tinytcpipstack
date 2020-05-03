@@ -40,6 +40,8 @@ static struct hash_table udp_table;
 
 static int udp_get_port_slow();
 
+static int udp_send_pkb(struct sock *pSock, struct pk_buff *pBuff);
+
 static unsigned short udp_id;
 /*本地端口区间范围*/
 int sysctl_local_port_range[2] = {UDP_PORT_MIN, UDP_PORT_MAX};
@@ -62,7 +64,8 @@ static int __port_used(unsigned short port, struct hlist_head *head) {
     struct hlist_node *node;
     struct sock *sk;
     //遍历udp_htable中best_slot槽位的链表，查找端口是否被占用
-    hlist_for_each_sock(sk, node, head)if (sk->sk_addr.src_port == _htons(port))
+    hlist_for_each_sock(sk, node, head)
+        if (sk->sk_addr.src_port == _htons(port))
             return 1;
     return 0;
 }
@@ -189,6 +192,10 @@ static void udp_unhash(struct sock *sk) {
     sock_del_hash(sk);
 }
 
+static int udp_send_pkb(struct sock *sk, struct pk_buff *pkb) {
+
+}
+
 /*构造udp数据报*/
 static int udp_init_pkb(struct sock *sk, struct pk_buff *pkb, void *buf, int size, struct sock_addr *skaddr) {
     struct ip *iphdr = pkb2ip(pkb);/*拆包*/
@@ -199,29 +206,60 @@ static int udp_init_pkb(struct sock *sk, struct pk_buff *pkb, void *buf, int siz
     iphdr->tos = 0;
     iphdr->tot_len = _htons(pkb->pk_len - ETH_HRD_SZ);
     iphdr->id = _htons(udp_id);
-    iphdr->frag_off=0;
-    iphdr->ttl=UDP_DEFAULT_TTL;
-    iphdr->protocol=sk->protocol;
-    iphdr->daddr=skaddr->dst_addr;
-    if (rt_output(pkb)<0){
+    iphdr->frag_off = 0;
+    iphdr->ttl = UDP_DEFAULT_TTL;
+    iphdr->protocol = sk->protocol;
+    iphdr->daddr = skaddr->dst_addr;
+    if (rt_output(pkb) < 0) {
         return -1;
     }
-    udphdr->src_port=sk->sk_addr.src_port;
-    udphdr->dst_port=skaddr->dst_port;
-    udphdr->length=_htons(size+UDP_HRD_SZ);
-    memcpy(udphdr->data,buf,size);/*填充数据报*/
-    udp_chksum(iphdr->saddr,iphdr->daddr,_ntohs(udphdr->length),(unsigned short *)udphdr);
+    udphdr->src_port = sk->sk_addr.src_port;
+    udphdr->dst_port = skaddr->dst_port;
+    udphdr->length = _htons(size + UDP_HRD_SZ);
+    memcpy(udphdr->data, buf, size);/*填充数据报*/
+    udp_chksum(iphdr->saddr, iphdr->daddr, _ntohs(udphdr->length), (unsigned short *) udphdr);
     return 0;
 }
 
-struct sock *udp_lookup_sock(unsigned short nport){
+
+
+static int udp_send_buf(struct sock *sk, void *buf, int size, struct sock_addr *skaddr) {
+    struct sock_addr sk_addr;
+    struct pk_buff *pkb;
+    if (size <= 0 || size >= UDP_MAX_BUFSZ)
+        return -1;
+    if (skaddr != NULL) {
+        sk_addr.dst_addr = skaddr->dst_addr;
+        sk_addr.dst_port = skaddr->src_port;
+    } else if (sk->sk_addr.dst_port) {
+        sk_addr.dst_addr = sk->sk_addr.dst_addr;
+        sk_addr.dst_port = sk->sk_addr.dst_port;
+    }
+    if (!sk_addr.dst_addr || !sk_addr.dst_port)
+        return -1;
+    /*没有设置目的端口并且autobind端口号失败，则返回-1错误码*/
+    if (!sk->sk_addr.dst_port && sock_autobind(sk) < 0)
+        return -1;
+    pkb = alloc_pkb(ETH_HRD_SZ + IP_HRD_SZ + UDP_HRD_SZ + size);
+    if (udp_init_pkb(sk,pkb,bu,size,&sk_addr)<0){
+        free_pkb(pkb);
+        return -1;
+    }
+    if (sk->ops->send_pkb!=NULL)
+        return sk->ops->send_pkb(sk,pkb);
+    else
+        return udp_send_pkb(sk,pkb);
+}
+
+
+
+struct sock *udp_lookup_sock(unsigned short nport) {
     struct hlist_head *head = udp_slot_head(_ntohs(nport));
     struct hlist_node *node;
     struct sock *sk;
     if (hlist_empty(head))
         return NULL;
-    hlist_for_each_sock(sk,node,head)
-        if (sk->sk_addr.src_port==nport)
+    hlist_for_each_sock(sk, node, head)if (sk->sk_addr.src_port == nport)
             return get_sock(sk);
     return NULL;
 }
@@ -240,14 +278,14 @@ void udp_init(void) {
     udp_id = 0;
 }
 
-struct sock *udp_alloc_sock(int protocol){
+struct sock *udp_alloc_sock(int protocol) {
     struct udp_sock *udp_sock;
-    if (protocol && protocol!=IP_P_UDP){
+    if (protocol && protocol != IP_P_UDP) {
         return NULL;
     }
-    udp_sock=xcalloc(sizeof(*udp_sock));
+    udp_sock = xcalloc(sizeof(*udp_sock));
     alloc_socks++;
-    udp_sock->sk.ops=&udp_ops;
+    udp_sock->sk.ops = &udp_ops;
     udp_id++;
     return &udp_sock->sk;
 }
