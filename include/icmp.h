@@ -85,7 +85,10 @@ struct icmphdr {
 #define icmp_gw icmp_un.gw
 
 #define ICMP_HRD_SZ sizeof(struct icmphdr)
-#define ip2icmp(ip) ((struct icmp*)ipdata(ip))
+/*ICMP报文包含在IP数据报中，ICMP报文作为IP层数据报的数据，加上数据报的首部，组成数据报发送出去。
+ * 因此为了获取struct icmphdr，利用ipdata定位ip数据报数据部分的位置，然后通过指针强转获取icmphdr
+ * */
+#define ip2icmp(ip) ((struct icmphdr*)ipdata(ip))
 
 struct icmp_control {
     int error;/*error=1表示为差错报文，为0则是一个查询ICMP报文*/

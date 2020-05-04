@@ -77,3 +77,33 @@ static struct icmp_control icmp_table[ICMP_T_MAXNUM+1]={
                 .handler=icmp_drop_reply,
         }
 };
+
+/**
+ * 处理目的主机不可达ICMP消息
+ * 源码中处理比较复杂，此处我只输出错误信息提示，直接丢弃pkb包。
+ * @param icmp_control
+ * @param pkb
+ */
+static void icmp_dest_unreach(struct icmp_control *icmp_control,struct pk_buff *pkb){
+    ferr("destination unreachable");
+    free_pkb(pkb);
+}
+
+
+static const char *redirectstr[4]={
+        [ICMP_REDIR_NET]="net redirect",
+        [ICMP_REDIR_HOST]="host redirect",
+        [ICMP_REDIR_NETTOS]="type of service and net redirect",
+        [ICMP_REDIR_HOSTTOS]="type of service and host redirect"
+};
+
+static void icmp_redirect(struct icmp_control *icmp_control,struct pk_buff *pkb){
+    struct ip *iphdr=pkb2ip(pkb);
+    struct icmphdr *icmphdr=ip2icmp(iphdr);
+    if (icmphdr->icmp_code>4){
+        ferr("Redirect code %d is error",icmphdr->icmp_code);
+    } else{
+        ferr("from " IPFMT " %s(new nexthop "IPFMT")", ipfmt(iphdr->saddr),redirectstr[icmphdr->icmp_code],ipfmt(icmphdr->icmp_gw));
+    }
+    free_pkb(pkb);
+}
