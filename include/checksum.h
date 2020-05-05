@@ -7,5 +7,6 @@
 
 extern unsigned short tcp_chksum(unsigned int,unsigned int,unsigned short,unsigned short *);
 extern unsigned short udp_chksum(unsigned int,unsigned int,unsigned short,unsigned short *);
+extern unsigned short icmp_chksum(unsigned short *,int);
 
 #endif //TINYTCPIPSTACK_CHECKSUM_H

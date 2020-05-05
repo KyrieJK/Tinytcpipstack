@@ -70,8 +70,8 @@ struct icmphdr {
     unsigned short icmp_checksum;
     union {
         struct {
-            unsigned short id;
-            unsigned short seq;
+            unsigned short id;/*识别号（一般用进程号作为识别号）, 用于匹配ECHO和ECHO REPLY包*/
+            unsigned short seq;/*报文序列号, 用于标记ECHO报文顺序*/
         } echo;
         unsigned int gw;
         unsigned int pad;
@@ -79,21 +79,28 @@ struct icmphdr {
     unsigned char icmp_data[0];
 } __attribute__((packed));
 
-#define icmp_id icmp_un.echo.id;
+#define icmp_id icmp_un.echo.id
 #define icmp_seq icmp_un.echo.seq
 #define icmp_undata icmp_un.pad
 #define icmp_gw icmp_un.gw
 
 #define ICMP_HRD_SZ sizeof(struct icmphdr)
+
 /*ICMP报文包含在IP数据报中，ICMP报文作为IP层数据报的数据，加上数据报的首部，组成数据报发送出去。
  * 因此为了获取struct icmphdr，利用ipdata定位ip数据报数据部分的位置，然后通过指针强转获取icmphdr
  * */
 #define ip2icmp(ip) ((struct icmphdr*)ipdata(ip))
 
+/*
+ * ICMP消息类型描述符。其字段之一是用于处理入消息的函数
+ * */
 struct icmp_control {
     int error;/*error=1表示为差错报文，为0则是一个查询ICMP报文*/
     char *info;
 
+    /*
+     * 由接收函数icmp_rcv启用的函数，处理送进来的ICMP消息
+     * */
     void (*handler)(struct icmp_control *, struct pk_buff *);/*对该输入类型ICMP报文的处理函数*/
 };
 

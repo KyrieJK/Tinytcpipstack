@@ -37,7 +37,7 @@ struct ip{
     unsigned char ihl:4, //协议头长度，指的是首部占有的32位字数，该段占4位。因此最大值为15，以4字节为单位，因此IP头最大长度为60，由于基本报头长度为20字节，因此IP选项最多为40字节
               version:4; //IP协议版本
     unsigned char tos; /*服务类型，此字段的值已经与标准协议有所区别。可以为流媒体相关协议所使用*/
-    unsigned short tot_len; /*报文总长度，包括报头和分片*/
+    unsigned short tot_len; /*报文总长度，包括报头和分片。这里不包括链路层的头部，目前最大值是65535字节*/
     unsigned short id; /*IP标识。标识字段唯一标识主机发送的每一份数据报。通常每发送一份数据报，ID值就会递增1。来自同一个数据报的若干分片必须有一样的值*/
     unsigned short frag_off; /*分片在原始报文中的偏移*/
     unsigned char ttl; /*TTL生存时间，路由器在每次转发时递减此值*/

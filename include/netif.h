@@ -101,8 +101,8 @@ struct pk_buff{
     unsigned short pk_type;
     int pk_len;
     int pk_refcnt; /* 引用计数 */
-    struct netdev *pk_indev;
-    struct rt_entry *pk_rtdst; /* 路由目的入口 */
+    struct netdev *pk_indev;/* 接收报文的原始网络设备 */
+    struct rt_entry *pk_rtdst; /* 目的路由缓存项，不管是输入的数据包还是输出的数据包，都需要经过路由子系统的查询得到目的路由缓存项之后，才能确定数据包的流向，否则查询不到路由的数据包最终只能丢弃 */
     unsigned char pk_data[0];/*变长数组，linux内核源码中用的很多，内存地址空间与所在结构体连续。但是貌似在linux5.0里面，变长数组被移除了？？*/
 };
 
