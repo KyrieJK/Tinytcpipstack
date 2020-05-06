@@ -8,6 +8,12 @@
 #define IP_ALEN 4 /* 单位是字节，即为4*8=32bit */
 #define IP_VERSION_4 4
 
+#define IP_FRAG_CE  0x8000 /*Flag:Congestion*/
+#define IP_FRAG_DF  0x4000 /*Flag:Don't Fragment*/
+#define IP_FRAG_MF  0x2000 /*Flag:More Fragment*/
+#define IP_FRAG_OFFSET  0x1FFF /*Fragment offset part*/
+#define IP_FRAG_MASK    (IP_FRAG_OFFSET | IP_FRAG_MF)
+
 /**
  * 协议类型
  */

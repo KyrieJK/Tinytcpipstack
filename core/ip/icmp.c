@@ -7,6 +7,7 @@
 #include "../../include/icmp.h"
 #include "../../include/lib.h"
 #include "../../include/checksum.h"
+#include "../../include/netif.h"
 
 static struct icmp_control icmp_table[ICMP_T_MAXNUM + 1] = {
         [ICMP_T_ECHORLY]={
@@ -153,6 +154,10 @@ static void icmp_drop_reply(struct icmp_control *icmp_control, struct pk_buff *p
     free_pkb(pkb);
 }
 
+/**
+ * 接收并解析接收到的ICMP包，识别type类型调用响应的handler函数进行处理
+ * @param pkb
+ */
 void icmp_in(struct pk_buff *pkb) {
     struct ip *iphdr = pkb2ip(pkb);
     struct icmphdr *icmphdr = ip2icmp(iphdr);
@@ -176,10 +181,47 @@ void icmp_in(struct pk_buff *pkb) {
     icmp_table[icmptype].handler(&icmp_table[icmptype],pkb);
 }
 
+/**
+ * 组装ICMP包并发送
+ * @param type
+ * @param code
+ * @param data
+ * @param pkb_in
+ */
 void icmp_send(unsigned char type,unsigned char code,unsigned int data,struct pk_buff *pkb_in){
     struct pk_buff *pkb;
     struct ip *iphdr = pkb2ip(pkb_in);
     struct icmphdr *icmphdr;
-    int payloadLen = _ntohs(iphdr->tot_len);
+    int payloadLen = _ntohs(ipdlen(iphdr));
+    if (payloadLen<iphlen(iphdr)+8)
+        return;
+    if (pkb_in->pk_type!=PKT_LOCALHOST){
+        return;
+    }
+    if (ipv4_is_multicast(iphdr->daddr)||ipv4_is_broadcast(iphdr->daddr)){
+        return;
+    }
+    if (iphdr->frag_off & _htons(IP_FRAG_OFFSET)){
+        return;
+    }
+    if (icmp_table[type].error && iphdr->protocol==IP_P_ICMP){
+        icmphdr=ip2icmp(iphdr);
+        if (icmphdr->icmp_type>ICMP_T_MAXNUM || icmp_table[icmphdr->icmp_type].error)
+            return;
+    }
 
+    /*
+     * Internet上的标准MTU为576字节
+     * IP数据报大小必须小于576字节，防止fragment*/
+    if (IP_HRD_SZ+ICMP_HRD_SZ+payloadLen>576)
+        payloadLen=576-IP_HRD_SZ-ICMP_HRD_SZ;
+    pkb=alloc_pkb(ETH_HRD_SZ+IP_HRD_SZ+ICMP_HRD_SZ+payloadLen);
+    icmphdr=ip2icmp(iphdr);
+    icmphdr->icmp_type=type;
+    icmphdr->icmp_code=code;
+    icmphdr->icmp_checksum=0;
+    icmphdr->icmp_un.pad=data;
+    memcpy(icmphdr->icmp_data,(unsigned char *)iphdr,payloadLen);
+    icmphdr->icmp_checksum=icmp_chksum((unsigned short *)icmphdr,ICMP_HRD_SZ+payloadLen);
+    ip_send_info();
 }
