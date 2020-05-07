@@ -22,10 +22,6 @@ static inline void list_init(struct list_head *head){
     head->prev = head->next = head;
 }
 
-static inline void list_add(struct list_head *new_list, struct list_head *head){
-    __list_add(new_list,head,head->next);
-}
-
 static inline void __list_add(struct list_head *new_list, struct list_head *prev, struct list_head *next){
     new_list->next = next;
     new_list->prev = prev;
@@ -33,8 +29,17 @@ static inline void __list_add(struct list_head *new_list, struct list_head *prev
     prev->next = new_list;
 }
 
+static inline void list_add(struct list_head *new_list, struct list_head *head){
+    __list_add(new_list,head,head->next);
+}
+
 static inline void list_add_tail(struct list_head *new_list, struct list_head *head){
     __list_add(new_list,head->prev,head);
+}
+
+static inline void __list_del(struct list_head *prev, struct list_head *next){
+    prev->next = next;
+    next->prev = prev;
 }
 
 /**
@@ -47,10 +52,7 @@ static inline void list_del(struct list_head *del_list){
     del_list->next = NULL;
 }
 
-static inline void __list_del(struct list_head *prev, struct list_head *next){
-    prev->next = next;
-    next->prev = prev;
-}
+
 
 /**
  * 从双向循环链表中去除del_list元素后，并不清空del_list结构体中的元素，而是使其内部成员指针*prev,*next指向自己

@@ -270,6 +270,114 @@ core/ip/icmp.c.s:
 	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/ip/icmp.c.s
 .PHONY : core/ip/icmp.c.s
 
+core/ip/ip_forward.o: core/ip/ip_forward.c.o
+
+.PHONY : core/ip/ip_forward.o
+
+# target to build an object file
+core/ip/ip_forward.c.o:
+	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/ip/ip_forward.c.o
+.PHONY : core/ip/ip_forward.c.o
+
+core/ip/ip_forward.i: core/ip/ip_forward.c.i
+
+.PHONY : core/ip/ip_forward.i
+
+# target to preprocess a source file
+core/ip/ip_forward.c.i:
+	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/ip/ip_forward.c.i
+.PHONY : core/ip/ip_forward.c.i
+
+core/ip/ip_forward.s: core/ip/ip_forward.c.s
+
+.PHONY : core/ip/ip_forward.s
+
+# target to generate assembly for a file
+core/ip/ip_forward.c.s:
+	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/ip/ip_forward.c.s
+.PHONY : core/ip/ip_forward.c.s
+
+core/ip/ip_fragment.o: core/ip/ip_fragment.c.o
+
+.PHONY : core/ip/ip_fragment.o
+
+# target to build an object file
+core/ip/ip_fragment.c.o:
+	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/ip/ip_fragment.c.o
+.PHONY : core/ip/ip_fragment.c.o
+
+core/ip/ip_fragment.i: core/ip/ip_fragment.c.i
+
+.PHONY : core/ip/ip_fragment.i
+
+# target to preprocess a source file
+core/ip/ip_fragment.c.i:
+	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/ip/ip_fragment.c.i
+.PHONY : core/ip/ip_fragment.c.i
+
+core/ip/ip_fragment.s: core/ip/ip_fragment.c.s
+
+.PHONY : core/ip/ip_fragment.s
+
+# target to generate assembly for a file
+core/ip/ip_fragment.c.s:
+	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/ip/ip_fragment.c.s
+.PHONY : core/ip/ip_fragment.c.s
+
+core/ip/ip_in.o: core/ip/ip_in.c.o
+
+.PHONY : core/ip/ip_in.o
+
+# target to build an object file
+core/ip/ip_in.c.o:
+	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/ip/ip_in.c.o
+.PHONY : core/ip/ip_in.c.o
+
+core/ip/ip_in.i: core/ip/ip_in.c.i
+
+.PHONY : core/ip/ip_in.i
+
+# target to preprocess a source file
+core/ip/ip_in.c.i:
+	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/ip/ip_in.c.i
+.PHONY : core/ip/ip_in.c.i
+
+core/ip/ip_in.s: core/ip/ip_in.c.s
+
+.PHONY : core/ip/ip_in.s
+
+# target to generate assembly for a file
+core/ip/ip_in.c.s:
+	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/ip/ip_in.c.s
+.PHONY : core/ip/ip_in.c.s
+
+core/ip/ip_out.o: core/ip/ip_out.c.o
+
+.PHONY : core/ip/ip_out.o
+
+# target to build an object file
+core/ip/ip_out.c.o:
+	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/ip/ip_out.c.o
+.PHONY : core/ip/ip_out.c.o
+
+core/ip/ip_out.i: core/ip/ip_out.c.i
+
+.PHONY : core/ip/ip_out.i
+
+# target to preprocess a source file
+core/ip/ip_out.c.i:
+	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/ip/ip_out.c.i
+.PHONY : core/ip/ip_out.c.i
+
+core/ip/ip_out.s: core/ip/ip_out.c.s
+
+.PHONY : core/ip/ip_out.s
+
+# target to generate assembly for a file
+core/ip/ip_out.c.s:
+	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/ip/ip_out.c.s
+.PHONY : core/ip/ip_out.c.s
+
 core/ip/route.o: core/ip/route.c.o
 
 .PHONY : core/ip/route.o
@@ -645,6 +753,18 @@ help:
 	@echo "... core/ip/icmp.o"
 	@echo "... core/ip/icmp.i"
 	@echo "... core/ip/icmp.s"
+	@echo "... core/ip/ip_forward.o"
+	@echo "... core/ip/ip_forward.i"
+	@echo "... core/ip/ip_forward.s"
+	@echo "... core/ip/ip_fragment.o"
+	@echo "... core/ip/ip_fragment.i"
+	@echo "... core/ip/ip_fragment.s"
+	@echo "... core/ip/ip_in.o"
+	@echo "... core/ip/ip_in.i"
+	@echo "... core/ip/ip_in.s"
+	@echo "... core/ip/ip_out.o"
+	@echo "... core/ip/ip_out.i"
+	@echo "... core/ip/ip_out.s"
 	@echo "... core/ip/route.o"
 	@echo "... core/ip/route.i"
 	@echo "... core/ip/route.s"

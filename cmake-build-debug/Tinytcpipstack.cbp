@@ -210,6 +210,18 @@
 		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/core/ip/icmp.c">
 			<Option target="MAIN1"/>
 		</Unit>
+		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/core/ip/ip_forward.c">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/core/ip/ip_fragment.c">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/core/ip/ip_in.c">
+			<Option target="MAIN1"/>
+		</Unit>
+		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/core/ip/ip_out.c">
+			<Option target="MAIN1"/>
+		</Unit>
 		<Unit filename="/Users/jkerving/Codework/CProject/Tinytcpipstack/core/ip/route.c">
 			<Option target="MAIN1"/>
 		</Unit>
