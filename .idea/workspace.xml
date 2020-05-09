@@ -15,25 +15,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d31b3a03-3bc1-4eee-9c31-210d8fcccb76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/core/ip/ip_forward.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/ip/ip_fragment.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/ip/ip_in.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/ip/ip_out.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MAIN1.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MAIN1.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MAIN1.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MAIN1.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MAIN1.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MAIN1.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MAIN1.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MAIN1.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MAIN1.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MAIN1.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MAIN2.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MAIN2.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tinytcpipstack.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tinytcpipstack.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Tinytcpipstack.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Tinytcpipstack.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/ip.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/ip.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/list.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/list.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/ip/ip_fragment.c" beforeDir="false" afterPath="$PROJECT_DIR$/core/ip/ip_fragment.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -243,7 +226,7 @@
       <workItem from="1588230841680" duration="568000" />
       <workItem from="1588232075159" duration="6477000" />
       <workItem from="1588318399205" duration="68000" />
-      <workItem from="1588318485746" duration="27483000" />
+      <workItem from="1588318485746" duration="30542000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1555669372375</created>
@@ -490,7 +473,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588756109697</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="ip_fragment.c&#10;IP分片函数实现">
+      <created>1588855198097</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1588855198097</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,7 +499,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="2019/04/23--工具方法，str2ip、parse_ip_port方法具体实现。注意char*、short*等指针的使用，容易引发segmentfault" />
     <MESSAGE value="2019/04/23--工具方法，max()/malloc()/calloc()函数封装" />
     <MESSAGE value="2019/04/24--实现双向循环链表结构，以及网络设备结构体" />
     <MESSAGE value="2019/04/24--实现哈希链表数据结构" />
@@ -534,35 +523,36 @@
     <MESSAGE value="icmp协议实现" />
     <MESSAGE value="icmp协议函数补充" />
     <MESSAGE value="icmp_in函数实现" />
-    <option name="LAST_COMMIT_MESSAGE" value="icmp_in函数实现" />
+    <MESSAGE value="ip_fragment.c&#10;IP分片函数实现" />
+    <option name="LAST_COMMIT_MESSAGE" value="ip_fragment.c&#10;IP分片函数实现" />
   </component>
   <component name="WindowStateProjectService">
     <state x="716" y="354" key="#Notifications" timestamp="1588093546083">
       <screen x="0" y="23" width="1680" height="976" />
     </state>
     <state x="716" y="354" key="#Notifications/0.23.1680.976/1680.23.3840.2137@0.23.1680.976" timestamp="1588093546083" />
-    <state x="427" y="23" key="CommitChangelistDialog2" timestamp="1588756109609">
+    <state x="427" y="23" key="CommitChangelistDialog2" timestamp="1588855197957">
       <screen x="0" y="23" width="1680" height="975" />
     </state>
     <state x="427" y="23" key="CommitChangelistDialog2/0.23.1680.972@0.23.1680.972" timestamp="1588521412949" />
     <state x="427" y="23" key="CommitChangelistDialog2/0.23.1680.973/1680.23.3840.2137@0.23.1680.973" timestamp="1588694201524" />
     <state x="427" y="23" key="CommitChangelistDialog2/0.23.1680.973@0.23.1680.973" timestamp="1588603838363" />
     <state x="427" y="23" key="CommitChangelistDialog2/0.23.1680.974/1680.23.3840.2137@0.23.1680.974" timestamp="1588267324413" />
-    <state x="427" y="23" key="CommitChangelistDialog2/0.23.1680.975/1680.23.3840.2137@0.23.1680.975" timestamp="1588756109609" />
+    <state x="427" y="23" key="CommitChangelistDialog2/0.23.1680.975/1680.23.3840.2137@0.23.1680.975" timestamp="1588855197957" />
     <state x="427" y="23" key="CommitChangelistDialog2/0.23.1680.976/1680.23.3840.2137@0.23.1680.976" timestamp="1588093447143" />
     <state x="427" y="23" key="CommitChangelistDialog2/0.23.1680.976@0.23.1680.976" timestamp="1588324356194" />
     <state x="349" y="143" key="SettingsEditor" timestamp="1588143838502">
       <screen x="0" y="23" width="1680" height="972" />
     </state>
     <state x="349" y="143" key="SettingsEditor/0.23.1680.972/1680.23.3840.2137@0.23.1680.972" timestamp="1588143838502" />
-    <state x="440" y="245" key="Vcs.Push.Dialog.v2" timestamp="1588756112478">
+    <state x="440" y="245" key="Vcs.Push.Dialog.v2" timestamp="1588855200055">
       <screen x="0" y="23" width="1680" height="975" />
     </state>
     <state x="440" y="245" key="Vcs.Push.Dialog.v2/0.23.1680.972@0.23.1680.972" timestamp="1588521414387" />
     <state x="440" y="245" key="Vcs.Push.Dialog.v2/0.23.1680.973/1680.23.3840.2137@0.23.1680.973" timestamp="1588694204410" />
     <state x="440" y="245" key="Vcs.Push.Dialog.v2/0.23.1680.973@0.23.1680.973" timestamp="1588603840058" />
     <state x="440" y="246" key="Vcs.Push.Dialog.v2/0.23.1680.974/1680.23.3840.2137@0.23.1680.974" timestamp="1588267326838" />
-    <state x="440" y="245" key="Vcs.Push.Dialog.v2/0.23.1680.975/1680.23.3840.2137@0.23.1680.975" timestamp="1588756112478" />
+    <state x="440" y="245" key="Vcs.Push.Dialog.v2/0.23.1680.975/1680.23.3840.2137@0.23.1680.975" timestamp="1588855200055" />
     <state x="440" y="246" key="Vcs.Push.Dialog.v2/0.23.1680.976/1680.23.3840.2137@0.23.1680.976" timestamp="1588093451276" />
     <state x="440" y="246" key="Vcs.Push.Dialog.v2/0.23.1680.976@0.23.1680.976" timestamp="1588324358227" />
     <state x="565" y="297" key="refactoring.ChangeSignatureDialog" timestamp="1588342594597">
