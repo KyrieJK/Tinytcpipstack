@@ -98,17 +98,17 @@ struct pk_buff *reass_frag(struct fragment *frag) {
     pkbhdr->tot_len = len;
 
     p += ETH_HRD_SZ + hlen;/*指针指向header尾部，data部分的内存首地址*/
-    list_for_each_entry(fragpkb,&frag->frag_pkb,pk_list){
-        fraghdr=pkb2ip(fragpkb);
+    list_for_each_entry(fragpkb, &frag->frag_pkb, pk_list) {
+        fraghdr = pkb2ip(fragpkb);
         /**
          * (char *)fraghdr+hlen表示指针跳过IP包头部，移动到此IP包的数据部分
          * fraghdr->tot_len-hlen表示此IP包的数据部分size
          */
-        memcpy(p,(char *)fraghdr+hlen,fraghdr->tot_len-hlen);
+        memcpy(p, (char *) fraghdr + hlen, fraghdr->tot_len - hlen);
         /*根据fraghdr的data size更新指针p的位置*/
-        p+=fraghdr->tot_len-hlen;
+        p += fraghdr->tot_len - hlen;
     }
-    printf("重组成功(%d/%d bytes)",hlen,len);
+    printf("重组成功(%d/%d bytes)", hlen, len);
     delete_frag(frag);
     return pkb;
 }
@@ -237,26 +237,26 @@ struct fragment *lookup_frag(struct ip *iphdr) {
  * @param pkb
  * @return
  */
-struct pk_buff *ip_reass(struct pk_buff *pkb){
-    struct ip *iphdr=pkb2ip(pkb);
+struct pk_buff *ip_reass(struct pk_buff *pkb) {
+    struct ip *iphdr = pkb2ip(pkb);
     struct fragment *frag;
 
     /*在frag_list中遍历找到与当前pkb的IP头部结构相同的分片*/
-    frag=lookup_frag(iphdr);
-    if (frag==NULL)
-        frag=new_frag(iphdr);
+    frag = lookup_frag(iphdr);
+    if (frag == NULL)
+        frag = new_frag(iphdr);
     /**
      * 根据找到的分片，通过insert_frag函数寻找在pk_list中合适的位置然后插入pkb
      */
-    if (insert_frag(pkb,frag)<0)
+    if (insert_frag(pkb, frag) < 0)
         return NULL;
     /**
      * 每次插入分片结构后都判断是否为最后一个分片，如果标志位变为COMPLETE，则进入分片重组函数
      */
     if (complete_frag(frag))
-        pkb=reass_frag(frag);
+        pkb = reass_frag(frag);
     else
-        pkb=NULL;
+        pkb = NULL;
 
     return pkb;
 }
@@ -302,5 +302,35 @@ struct pk_buff *ip_frag(struct pk_buff *pkb, struct ip *orig, int hlen, int dlen
     return fragpkb;
 }
 
+void ip_send_frag(struct net_device *dev, struct pk_buff *pkb) {
+    struct pk_buff *fragpkb;
+    struct ip *iphdr;
+    int dlen, hlen, max_len, offset;
+
+    iphdr = pkb2ip(pkb);
+    hlen = iphlen(iphdr);
+    dlen = _ntohs(iphdr->tot_len) - hlen;/*IP报文的数据长度*/
+    max_len = (dev->net_mtu - hlen) & ~7;/*每个分片的数据部分长度等于mac层的mtu减去ip头.与(~7)进行位运算是为了确保max length为8字节的整数倍*/
+    offset = 0;
+    while (dlen > max_len) {
+        printf("ip frag:off %d hlen %d dlen %d", offset, hlen, max_len);
+        fragpkb = ip_frag(pkb, iphdr, hlen, max_len, offset, IP_FRAG_MF);
+
+        ip_send_dev(dev, fragpkb);
+
+        /*
+         * 更新dlen、offset
+         * */
+        dlen -= max_len;
+        offset += max_len;
+    }
+
+    if (dlen) {
+        printf("ip frag:off %d hlen %d dlen %d", offset, hlen, max_len);
+        fragpkb = ip_frag(pkb, iphdr, hlen, dlen, offset, iphdr->frag_off & IP_FRAG_MF);
+        ip_send_dev(dev,fragpkb);
+    }
+    free_pkb(pkb);
+}
 
 
