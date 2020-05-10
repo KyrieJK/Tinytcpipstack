@@ -63,15 +63,54 @@ int get_frag_off(struct ip *iphdr) {
 }
 
 /**
- * 重组Fragment
+ * 重组Fragment,构造packet buffer
  * @param frag
  * @return
  */
-struct pk_buff *reass_frag(struct fragment *frag){
-    struct pk_buff *pkb,*fragpkb;
+struct pk_buff *reass_frag(struct fragment *frag) {
+    struct pk_buff *pkb, *fragpkb;
     struct ip *fraghdr;
-    int hlen,len;
+    int hlen, len;
+    unsigned char *p;
 
+    pkb = NULL;
+    hlen = frag->frag_hlen;
+    len = frag->frag_hlen + frag->frag_size;
+
+    if (len > 65535) {
+        ferr("数据报大小超出最大限制(%d/%d)", hlen, len);
+        delete_frag(frag);
+        return pkb;
+    }
+
+    /*从已按照插入顺序排序好的分片链表中取出头分片节点*/
+    fragpkb = list_first_entry(&frag->frag_pkb, struct pk_buff, pk_list);
+    fraghdr = pkb2ip(fragpkb);
+
+    /*pkb表示重组后的数据报pkb,alloc_pkb先根据ether header和len分配内存空间*/
+    pkb = alloc_pkb(ETH_HRD_SZ + len);
+    pkb->pk_protocol = ETHERNET_TYPE_IP;
+    p = pkb->pk_data;/*字符指针指向pkb->pk_data的首地址*/
+    memcpy(p, fragpkb->pk_data, ETH_HRD_SZ + hlen);/*拷贝头部结构*/
+
+    struct ip *pkbhdr = pkb2ip(pkb);
+    pkbhdr->frag_off = 0;
+    pkbhdr->tot_len = len;
+
+    p += ETH_HRD_SZ + hlen;/*指针指向header尾部，data部分的内存首地址*/
+    list_for_each_entry(fragpkb,&frag->frag_pkb,pk_list){
+        fraghdr=pkb2ip(fragpkb);
+        /**
+         * (char *)fraghdr+hlen表示指针跳过IP包头部，移动到此IP包的数据部分
+         * fraghdr->tot_len-hlen表示此IP包的数据部分size
+         */
+        memcpy(p,(char *)fraghdr+hlen,fraghdr->tot_len-hlen);
+        /*根据fraghdr的data size更新指针p的位置*/
+        p+=fraghdr->tot_len-hlen;
+    }
+    printf("重组成功(%d/%d bytes)",hlen,len);
+    delete_frag(frag);
+    return pkb;
 }
 
 /**
@@ -139,14 +178,14 @@ int insert_frag(struct pk_buff *pkb, struct fragment *frag) {
             }
 
             /*判断是否为第一个分片（偏移量offset为0）*/
-            if (frag_offset==0)
-                frag->frag_flags|=FRAG_FIRST_IN;
+            if (frag_offset == 0)
+                frag->frag_flags |= FRAG_FIRST_IN;
 
             /*插入当前分片到pos分片后面*/
-            list_add(&pkb->pk_list,pos);
-            frag->frag_rsize+=iphdr->tot_len-hlen;
+            list_add(&pkb->pk_list, pos);
+            frag->frag_rsize += iphdr->tot_len - hlen;
             if (full_frag(frag))
-                frag->frag_flags|=FRAG_COMPLETE;
+                frag->frag_flags |= FRAG_COMPLETE;
             return 0;
         }
     }
@@ -167,14 +206,14 @@ int insert_frag(struct pk_buff *pkb, struct fragment *frag) {
     }
 
     /*判断是否为第一个分片（偏移量offset为0）*/
-    if (frag_offset==0)
-        frag->frag_flags|=FRAG_FIRST_IN;
+    if (frag_offset == 0)
+        frag->frag_flags |= FRAG_FIRST_IN;
 
     /*插入当前分片到pos分片后面*/
-    list_add(&pkb->pk_list,pos);
-    frag->frag_rsize+=iphdr->tot_len-hlen;
+    list_add(&pkb->pk_list, pos);
+    frag->frag_rsize += iphdr->tot_len - hlen;
     if (full_frag(frag))
-        frag->frag_flags|=FRAG_COMPLETE;
+        frag->frag_flags |= FRAG_COMPLETE;
     return 0;
 }
 
@@ -185,13 +224,41 @@ int insert_frag(struct pk_buff *pkb, struct fragment *frag) {
  */
 struct fragment *lookup_frag(struct ip *iphdr) {
     struct fragment *frag;
-    list_for_each_entry(frag, &frag_head, frag_list)
-        if (frag->frag_id == iphdr->id &&
-            frag->frag_pro == iphdr->protocol &&
-            frag->frag_src == iphdr->saddr &&
-            frag->frag_dst == iphdr->daddr)
+    list_for_each_entry(frag, &frag_head, frag_list)if (frag->frag_id == iphdr->id &&
+                                                        frag->frag_pro == iphdr->protocol &&
+                                                        frag->frag_src == iphdr->saddr &&
+                                                        frag->frag_dst == iphdr->daddr)
             return frag;
     return NULL;
+}
+
+/**
+ * 根据接收到的packet buffer进行分片重组
+ * @param pkb
+ * @return
+ */
+struct pk_buff *ip_reass(struct pk_buff *pkb){
+    struct ip *iphdr=pkb2ip(pkb);
+    struct fragment *frag;
+
+    /*在frag_list中遍历找到与当前pkb的IP头部结构相同的分片*/
+    frag=lookup_frag(iphdr);
+    if (frag==NULL)
+        frag=new_frag(iphdr);
+    /**
+     * 根据找到的分片，通过insert_frag函数寻找在pk_list中合适的位置然后插入pkb
+     */
+    if (insert_frag(pkb,frag)<0)
+        return NULL;
+    /**
+     * 每次插入分片结构后都判断是否为最后一个分片，如果标志位变为COMPLETE，则进入分片重组函数
+     */
+    if (complete_frag(frag))
+        pkb=reass_frag(frag);
+    else
+        pkb=NULL;
+
+    return pkb;
 }
 
 /**
