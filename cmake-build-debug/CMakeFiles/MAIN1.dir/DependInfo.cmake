@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/ip/ip_in.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/ip/ip_in.c.o"
   "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/ip/ip_out.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/ip/ip_out.c.o"
   "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/ip/route.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/ip/route.c.o"
+  "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/netdevice.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/netdevice.c.o"
   "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/pkb.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/pkb.c.o"
   "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/socket/inet.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/socket/inet.c.o"
   "/Users/jkerving/Codework/CProject/Tinytcpipstack/core/socket/sock.c" "/Users/jkerving/Codework/CProject/Tinytcpipstack/cmake-build-debug/CMakeFiles/MAIN1.dir/core/socket/sock.c.o"

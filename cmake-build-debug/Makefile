@@ -405,6 +405,33 @@ core/ip/route.c.s:
 	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/ip/route.c.s
 .PHONY : core/ip/route.c.s
 
+core/netdevice.o: core/netdevice.c.o
+
+.PHONY : core/netdevice.o
+
+# target to build an object file
+core/netdevice.c.o:
+	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/netdevice.c.o
+.PHONY : core/netdevice.c.o
+
+core/netdevice.i: core/netdevice.c.i
+
+.PHONY : core/netdevice.i
+
+# target to preprocess a source file
+core/netdevice.c.i:
+	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/netdevice.c.i
+.PHONY : core/netdevice.c.i
+
+core/netdevice.s: core/netdevice.c.s
+
+.PHONY : core/netdevice.s
+
+# target to generate assembly for a file
+core/netdevice.c.s:
+	$(MAKE) -f CMakeFiles/MAIN1.dir/build.make CMakeFiles/MAIN1.dir/core/netdevice.c.s
+.PHONY : core/netdevice.c.s
+
 core/pkb.o: core/pkb.c.o
 
 .PHONY : core/pkb.o
@@ -768,6 +795,9 @@ help:
 	@echo "... core/ip/route.o"
 	@echo "... core/ip/route.i"
 	@echo "... core/ip/route.s"
+	@echo "... core/netdevice.o"
+	@echo "... core/netdevice.i"
+	@echo "... core/netdevice.s"
 	@echo "... core/pkb.o"
 	@echo "... core/pkb.i"
 	@echo "... core/pkb.s"

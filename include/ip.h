@@ -120,5 +120,6 @@ static inline int equalsubnet(unsigned int mask,unsigned int ip1,unsigned int ip
 
 struct pk_buff *ip_reass(struct pk_buff *);
 void ip_send_frag(struct net_device *, struct pk_buff *);
+void ip_send_dev(struct net_device *, struct pk_buff *);
 
 #endif
