@@ -111,5 +111,7 @@ struct icmp_control {
     .handler=icmp_drop_reply,\
 }
 
+extern void icmp_send(unsigned char,unsigned char,unsigned int,struct pk_buff *);
+
 
 #endif //TINYTCPIPSTACK_ICMP_H

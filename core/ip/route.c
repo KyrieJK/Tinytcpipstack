@@ -7,6 +7,7 @@
 #include "../../include/ip.h"
 #include "../../include/netif.h"
 #include "../../include/netconfig.h"
+#include "../../include/icmp.h"
 
 static LIST_HEAD(rt_head);
 
@@ -60,6 +61,28 @@ void rt_init(void) {
     rt_add(veth->net_ipaddr, 0xffffffff, 0, 0, RT_LOCALHOST, loop);
     rt_add(LOCALNET(veth), veth->net_mask, 0, 0, RT_NONE, veth);
     rt_add(0, 0, tap->dev.net_ipaddr, 0, RT_DEFAULT, veth);
+}
+
+int rt_input(struct pk_buff *pkb){
+    struct ip *iphdr=pkb2ip(pkb);
+    struct rt_entry *rt=rt_lookup(iphdr->daddr);
+    if (rt==NULL){
+#ifndef CONFIG_TOP1
+        /**
+         * If a router cannot forward a packet because it has no routes
+		 * at all (including no default route) to the destination
+		 * specified in the packet, then the router MUST generate a
+		 * Destination Unreachable, Code 0 (Network Unreachable) ICMP
+		 * message.
+         */
+         ip_hton(iphdr);
+         icmp_send(ICMP_T_DESTUNREACH,ICMP_HOST_UNREACH,0,pkb);
+#endif
+         free_pkb(pkb);
+         return -1;
+    }
+    pkb->pk_rtdst=rt;
+    return 0;
 }
 
 /*根据路由表查找路由项，确定pkb目的地址以及根据路由项所在netdevice的ip地址设置ip包src address*/

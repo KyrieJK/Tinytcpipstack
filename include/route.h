@@ -30,6 +30,7 @@ extern int rt_output(struct pk_buff *);
 extern void rt_init(void);
 extern void rt_add(unsigned int, unsigned int, unsigned int, int, unsigned int,
                    struct net_device *);
+extern int rt_input(struct pk_buff *);
 
 
 #endif //TINYTCPIPSTACK_ROUTE_H
