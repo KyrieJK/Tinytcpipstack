@@ -114,6 +114,11 @@ struct fragment {
 #define IPFMT "%d.%d.%d.%d"
 #define ipfmt(ip) (ip) & 0xff,((ip) >> 8) & 0xff,((ip) >> 16) & 0xff,((ip) >> 24) & 0xff
 
+static inline int equalsubnet(unsigned int mask,unsigned int ip1,unsigned int ip2){
+    return ((mask & ip1) == (mask & ip2));
+}
+
 struct pk_buff *ip_reass(struct pk_buff *);
+void ip_send_frag(struct net_device *, struct pk_buff *);
 
 #endif

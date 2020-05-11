@@ -16,7 +16,7 @@ struct rt_entry{
     struct list_head rt_list; /* 链接多个rt_entry的双向循环链表 */
     unsigned int rt_net; /* 网络地址 */
     unsigned int rt_netmask; /* 子网掩码 */
-    unsigned int rt_gateway; /* 网关，数据报下一跳的目的地 */
+    unsigned int rt_gateway; /* 当目的主机为直连时，即在同一链路上，rt_gateway表示目的地址。当需要通过一个网关到达目的地时，rt_gateway被设置为路由项中的下一跳的网关*/
     unsigned int rt_flags; /* 路由标志位，用于路由表项的一些特性和标志 */
     int rt_metric; /* 距离度量值 */
     struct net_device *rt_dev; /* 输出网络设备（即将报文送达目的地的发送设备），对送往本地的输入报文的路由，输出网络设备设置为回环设备 */
@@ -31,6 +31,7 @@ extern void rt_init(void);
 extern void rt_add(unsigned int, unsigned int, unsigned int, int, unsigned int,
                    struct net_device *);
 extern int rt_input(struct pk_buff *);
+struct rt_entry *rt_lookup(unsigned int);
 
 
 #endif //TINYTCPIPSTACK_ROUTE_H
